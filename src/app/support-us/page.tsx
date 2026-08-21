@@ -1,0 +1,70 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { SubNavPills } from "@/components/layout/sub-nav-pills";
+import { Reveal } from "@/components/layout/reveal";
+import { ProgramCard } from "@/components/support/program-card";
+import { supportPrograms, supportUsIntro } from "@/content/supportPrograms";
+
+export const metadata: Metadata = {
+  title: "Support Us",
+  description:
+    "Support Education. Restore Hope. Empower Lives. Ways to give to H. H. High School, Brambe — infrastructure, classroom makeovers, child sponsorship, and teacher salaries.",
+};
+
+const cardColor = { accolades: "bg-brand-accolades", story: "bg-brand-story", gallery: "bg-brand-gallery" } as const;
+
+export default function SupportUsPage() {
+  return (
+    <>
+      <SubNavPills />
+
+      <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-black">
+        <Image
+          src={supportUsIntro.hero.image}
+          alt=""
+          fill
+          className="object-cover opacity-70"
+          sizes="100vw"
+        />
+        <div className="relative z-10 mx-auto max-w-2xl rounded-lg bg-white/90 px-8 py-6 text-center">
+          <h1 className="font-heading text-2xl sm:text-3xl">{supportUsIntro.hero.heading}</h1>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-5xl px-6 py-12 sm:py-16">
+        <Reveal>
+          <p className="mb-12 text-center text-base text-muted-foreground">
+            {supportUsIntro.hero.subheading}
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {supportUsIntro.whyCards.map((card, i) => (
+            <Reveal key={card.title} delay={i * 0.05}>
+              <div className={`h-full rounded-xl p-6 text-white ${cardColor[card.color]}`}>
+                <h2 className="mb-4 text-center font-heading text-base">{card.title}</h2>
+                <ul className="space-y-2 text-sm text-white/90">
+                  {card.points.map((point) => (
+                    <li key={point}>❖ {point}</li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.1}>
+          <p className="my-12 text-center text-lg font-medium">{supportUsIntro.waysToGiveIntro}</p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {supportPrograms.map((program, i) => (
+            <Reveal key={program.slug} delay={(i % 2) * 0.05}>
+              <ProgramCard program={program} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
