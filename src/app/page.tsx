@@ -1,7 +1,7 @@
 import { Hero } from "@/components/home/hero";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { LeadershipNotes } from "@/components/home/leadership-notes";
-import { Foundations } from "@/components/home/foundations";
+import { Foundations, SdgSection } from "@/components/home/foundations";
 import { VisionMission } from "@/components/home/vision-mission";
 import { TestimonialRow } from "@/components/home/testimonial-row";
 import { CelebrateEffortsVideo } from "@/components/home/celebrate-efforts-video";
@@ -17,6 +17,7 @@ export default function Home() {
       <SubNavPills variant="hero" />
       <LeadershipNotes />
       <Foundations />
+      <SdgSection />
       <VisionMission />
       <TestimonialRow title="Gratitude & Impressions" testimonials={gratitudeTestimonials} />
       <CelebrateEffortsVideo />

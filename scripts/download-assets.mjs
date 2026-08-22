@@ -41,14 +41,29 @@ const manifest = {
   // supporting imagery in the Foundations section instead of as a portrait.
   "home/students-award-photo": "https://framerusercontent.com/images/guS2V1uZNUS9umn6n5AuxiVC7U.jpg?width=2560&height=1720",
 
+  // Real UN SDG goal badges (school photo background + official SDG icon
+  // overlay), found via the CLIENT-rendered DOM under "The SDGs WE DIRECTLY
+  // CONTRIBUTE TO" — the static-HTML fetch used for the rest of this script
+  // serves a different (stale) SSR pass for this specific section, which is
+  // why a plain curl-based scrape missed it. Verified each icon by opening it.
+  "home/sdg/1-no-poverty-bg": "https://framerusercontent.com/images/dzYbPft9mbQ4hJLJKGcjrt1Ts.jpg?width=480&height=480",
+  "home/sdg/1-no-poverty-icon": "https://framerusercontent.com/images/RxElOlQnOXVmS1FpuRubOidJhHo.jpg",
+  "home/sdg/3-good-health-bg": "https://framerusercontent.com/images/gV4oE3CbYETTNs3dYzQjj1Ktk.jpg",
+  "home/sdg/3-good-health-icon": "https://framerusercontent.com/images/7ettEEoqNqpUKAxHg1Vd1jlEQk.jpg",
+  "home/sdg/4-quality-education-bg": "https://framerusercontent.com/images/49eqXBdBksxvhQyQLXE6S9dBBYk.jpg",
+  "home/sdg/4-quality-education-icon": "https://framerusercontent.com/images/jg4PhRUgNsIhnJySstm0gokXM.jpg",
+  "home/sdg/5-gender-equality-bg": "https://framerusercontent.com/images/h1TfmkzW13afJNOlC4rNfkl9qhE.jpg",
+  "home/sdg/5-gender-equality-icon": "https://framerusercontent.com/images/jlPPxaEBxU6T2NQd0YgSD70U6Jw.jpg",
+  "home/sdg/6-clean-water-bg": "https://framerusercontent.com/images/dYd50K3LGVntMebffsQ8738pPU.jpg",
+  "home/sdg/6-clean-water-icon": "https://framerusercontent.com/images/RfmB6oDIfRibJc7SIcBGGWVPIEQ.jpg",
+  "home/sdg/10-reduced-inequalities-bg": "https://framerusercontent.com/images/at7SdS5dUVyYNDaelNPW4OjhAdA.jpg",
+  "home/sdg/10-reduced-inequalities-icon": "https://framerusercontent.com/images/kSP8LYo2pChq9OVcOW3KjSCoRso.jpg",
+
   // These 8 images are the real headshots for the first 8 "Gratitude &
   // Impressions" testimonials (Alexander, Faridoon, Nadeem, Snigdha, Raunak,
   // Anupam, Ajay, Dr. Atri, in that order) — verified by inspecting each
-  // image. They were initially mislabeled as "SDG logos" due to the source
-  // site's non-visual DOM order; there are no real SDG icon images on the
-  // site (that heading has no attributable graphic in the static HTML).
-  // The remaining 7 gratitude testimonials + all 5 alumni testimonials have
-  // no reliable photo (the DOM order mixed in unrelated group/decorative
+  // image. The remaining 7 gratitude testimonials + all 5 alumni testimonials
+  // have no reliable photo (the DOM order mixed in unrelated group/decorative
   // photos with no alt text), so those render an initials avatar instead —
   // see src/components/home/initials-avatar.tsx.
   "home/gratitude-avatar-01": "https://framerusercontent.com/images/xweusGHmWF4EhVUnMzHaeCKVYI8.png?width=376&height=256",

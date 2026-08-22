@@ -17,16 +17,18 @@ export const storyPortraits = [
   { name: "Dr. Neha Kaur", image: "/images/our-story/08-neha-kaur.jpg" },
 ];
 
+export const foundationsBanner = "/images/home/students-award-photo.jpg";
+
 export const foundations = [
   {
     title: "Child-Centered Learning",
     description: "Every child is nurtured with personal attention, curiosity-driven teaching, and a joyful classroom experience.",
-    color: "story",
+    color: "gallery",
   },
   {
     title: "Community Engagement",
     description: "Built with the support of the local community, the school works hand-in-hand with families to create lasting impact.",
-    color: "initiatives",
+    color: "story",
   },
   {
     title: "Affordable",
@@ -46,11 +48,18 @@ export const foundations = [
   {
     title: "Inclusive",
     description: "Our doors are open to all children, regardless of background, with special support for those who need it most.",
-    color: "initiatives",
+    color: "accolades",
   },
 ] as const;
 
-// The source site displays 8 UN SDG logo icons here. Those are small
-// externally-hosted graphics we couldn't reliably attribute to specific
-// goal numbers during recon, so rather than guess we keep the heading
-// (a real claim the school makes) without fabricated icons.
+// Real UN SDG goal badges from the live site — a school photo background
+// with the official SDG icon overlaid. Confirmed by opening each icon file;
+// order matches the source DOM.
+export const sdgGoals = [
+  { number: 1, name: "No Poverty", bg: "/images/home/sdg/1-no-poverty-bg.jpg", icon: "/images/home/sdg/1-no-poverty-icon.jpg" },
+  { number: 3, name: "Good Health and Well-Being", bg: "/images/home/sdg/3-good-health-bg.jpg", icon: "/images/home/sdg/3-good-health-icon.jpg" },
+  { number: 4, name: "Quality Education", bg: "/images/home/sdg/4-quality-education-bg.jpg", icon: "/images/home/sdg/4-quality-education-icon.jpg" },
+  { number: 5, name: "Gender Equality", bg: "/images/home/sdg/5-gender-equality-bg.jpg", icon: "/images/home/sdg/5-gender-equality-icon.jpg" },
+  { number: 6, name: "Clean Water and Sanitation", bg: "/images/home/sdg/6-clean-water-bg.jpg", icon: "/images/home/sdg/6-clean-water-icon.jpg" },
+  { number: 10, name: "Reduced Inequalities", bg: "/images/home/sdg/10-reduced-inequalities-bg.jpg", icon: "/images/home/sdg/10-reduced-inequalities-icon.jpg" },
+] as const;
