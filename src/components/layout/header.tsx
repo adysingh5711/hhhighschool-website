@@ -31,6 +31,16 @@ const navLinks = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.location.hash) {
+        window.history.pushState("", document.title, window.location.pathname);
+      }
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -45,7 +55,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2">
           <Image
             src="/images/logo.png"
             alt={site.shortName}
@@ -103,7 +113,16 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle>{site.shortName}</SheetTitle>
+                <SheetTitle>
+                  <SheetClose
+                    nativeButton={false}
+                    render={
+                      <Link href="/" onClick={handleLogoClick} className="hover:opacity-80 transition-opacity" />
+                    }
+                  >
+                    {site.shortName}
+                  </SheetClose>
+                </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4">
                 {navLinks.map((link) => (

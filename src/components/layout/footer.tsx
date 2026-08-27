@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FacebookIcon, InstagramIcon, YoutubeIcon, XIcon } from "@/components/icons/social-icons";
@@ -11,11 +13,25 @@ const socialIcons = {
 };
 
 export function Footer() {
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.location.hash) {
+        window.history.pushState("", document.title, window.location.pathname);
+      }
+    }
+  };
+
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
-          <div className="flex items-center gap-3">
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className="flex items-center gap-3 hover:opacity-90 transition-opacity"
+          >
             <Image
               src="/images/logo-short.png"
               alt=""
@@ -24,7 +40,7 @@ export function Footer() {
               className="size-10 rounded bg-white object-contain p-1"
             />
             <span className="font-heading text-lg">{site.shortName}</span>
-          </div>
+          </Link>
           <p className="text-sm text-white/70">
             {site.address.line1}
             <br />
