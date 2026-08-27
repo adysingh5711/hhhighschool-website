@@ -26,27 +26,27 @@ async function dl(url, destNoExt) {
 
 // { destPathNoExt: sourceUrl }
 const manifest = {
-  "logo": "https://framerusercontent.com/images/KCoXDYnPhqzu9tIZUXavnxDys.png?width=476&height=128",
+  "logo": "https://framerusercontent.com/images/KCoXDYnPhqzu9tIZUXavnxDys.png",
 
-  "home/hero": "https://framerusercontent.com/images/AL63ssd0LTWOyiin0J9p1Xv47M.png?width=3456&height=1348",
+  "home/hero": "https://framerusercontent.com/images/AL63ssd0LTWOyiin0J9p1Xv47M.png",
   // NOTE: 255zLKIxXFljtZsZDMuwGfbuY is Dr. Shadab Hassan's portrait (verified
   // by inspection — it's reused on the our-story page as "Dr. Shahid Shadab
   // Hassan"), and VzhPcHClZKKB9aOSh9SFdPcalho is Mrs. Roshan Ara's portrait
   // (verified — her name appears on the certificate she's signing in frame).
   // The source site's DOM order suggested the opposite pairing; corrected here.
-  "home/director-shadab": "https://framerusercontent.com/images/255zLKIxXFljtZsZDMuwGfbuY.png?width=1356&height=1328",
-  "home/principal-roshan-ara": "https://framerusercontent.com/images/VzhPcHClZKKB9aOSh9SFdPcalho.png?width=2204&height=2352",
-  "home/vision-mission-photo": "https://framerusercontent.com/images/2U64Xpq7NrbzTxIT58SKBfzAIOg.png?width=2104&height=3456",
+  "home/director-shadab": "https://framerusercontent.com/images/255zLKIxXFljtZsZDMuwGfbuY.png",
+  "home/principal-roshan-ara": "https://framerusercontent.com/images/VzhPcHClZKKB9aOSh9SFdPcalho.png",
+  "home/vision-mission-photo": "https://framerusercontent.com/images/2U64Xpq7NrbzTxIT58SKBfzAIOg.png",
   // This is a "Best Class Award" celebration photo, not a headshot — used as
   // supporting imagery in the Foundations section instead of as a portrait.
-  "home/students-award-photo": "https://framerusercontent.com/images/guS2V1uZNUS9umn6n5AuxiVC7U.jpg?width=2560&height=1720",
+  "home/students-award-photo": "https://framerusercontent.com/images/guS2V1uZNUS9umn6n5AuxiVC7U.jpg",
 
   // Real UN SDG goal badges (school photo background + official SDG icon
   // overlay), found via the CLIENT-rendered DOM under "The SDGs WE DIRECTLY
   // CONTRIBUTE TO" — the static-HTML fetch used for the rest of this script
   // serves a different (stale) SSR pass for this specific section, which is
   // why a plain curl-based scrape missed it. Verified each icon by opening it.
-  "home/sdg/1-no-poverty-bg": "https://framerusercontent.com/images/dzYbPft9mbQ4hJLJKGcjrt1Ts.jpg?width=480&height=480",
+  "home/sdg/1-no-poverty-bg": "https://framerusercontent.com/images/dzYbPft9mbQ4hJLJKGcjrt1Ts.jpg",
   "home/sdg/1-no-poverty-icon": "https://framerusercontent.com/images/RxElOlQnOXVmS1FpuRubOidJhHo.jpg",
   "home/sdg/3-good-health-bg": "https://framerusercontent.com/images/gV4oE3CbYETTNs3dYzQjj1Ktk.jpg",
   "home/sdg/3-good-health-icon": "https://framerusercontent.com/images/7ettEEoqNqpUKAxHg1Vd1jlEQk.jpg",
@@ -62,53 +62,62 @@ const manifest = {
   // These 8 images are the real headshots for the first 8 "Gratitude &
   // Impressions" testimonials (Alexander, Faridoon, Nadeem, Snigdha, Raunak,
   // Anupam, Ajay, Dr. Atri, in that order) — verified by inspecting each
-  // image. The remaining 7 gratitude testimonials + all 5 alumni testimonials
-  // have no reliable photo (the DOM order mixed in unrelated group/decorative
-  // photos with no alt text), so those render an initials avatar instead —
-  // see src/components/home/initials-avatar.tsx.
-  "home/gratitude-avatar-01": "https://framerusercontent.com/images/xweusGHmWF4EhVUnMzHaeCKVYI8.png?width=376&height=256",
-  "home/gratitude-avatar-02": "https://framerusercontent.com/images/DVc2z3ZozseVhwVRC79caPQjY.png?width=376&height=256",
-  "home/gratitude-avatar-03": "https://framerusercontent.com/images/vfXQrnVQqumbPN3fsE8w7EbiQUI.png?width=376&height=256",
-  "home/gratitude-avatar-04": "https://framerusercontent.com/images/F48cADaG8zfqhFw8fenVmHkmY.png?width=376&height=256",
-  "home/gratitude-avatar-05": "https://framerusercontent.com/images/rEYDhYlnbX7RdZurxMA22ElPUU.png?width=376&height=256",
-  "home/gratitude-avatar-06": "https://framerusercontent.com/images/rmr2q1TcSp9FGtpZSfklE9cGFKw.png?width=376&height=256",
-  "home/gratitude-avatar-07": "https://framerusercontent.com/images/WyHd85GydQulNOAtQaRDbgBySLA.png?width=376&height=256",
-  "home/gratitude-avatar-08": "https://framerusercontent.com/images/zZEdhzrbdN99s2O99Ml7xVgl6Po.png?width=376&height=256",
+  "home/gratitude/01-alexander": "https://framerusercontent.com/images/xweusGHmWF4EhVUnMzHaeCKVYI8.png",
+  "home/gratitude/02-faridoon-shahryar": "https://framerusercontent.com/images/DVc2z3ZozseVhwVRC79caPQjY.png",
+  "home/gratitude/03-nadeem-ahmad": "https://framerusercontent.com/images/vfXQrnVQqumbPN3fsE8w7EbiQUI.png",
+  "home/gratitude/04-snigdha-bose": "https://framerusercontent.com/images/F48cADaG8zfqhFw8fenVmHkmY.png",
+  "home/gratitude/05-raunak-narain": "https://framerusercontent.com/images/rEYDhYlnbX7RdZurxMA22ElPUU.png",
+  "home/gratitude/06-anupam-pathak": "https://framerusercontent.com/images/rmr2q1TcSp9FGtpZSfklE9cGFKw.png",
+  "home/gratitude/07-ajay-kumar": "https://framerusercontent.com/images/WyHd85GydQulNOAtQaRDbgBySLA.png",
+  "home/gratitude/08-atri-gangopadhyay": "https://framerusercontent.com/images/zZEdhzrbdN99s2O99Ml7xVgl6Po.png",
+  "home/gratitude/15-smriti-and-rahul": "https://framerusercontent.com/images/MardBgZaxgeeIiaJWlX7KXdMKyk.png",
+  "home/gratitude/09-achal-sinha": "https://framerusercontent.com/images/1ohYCst0dzLqJHx9RdOEtUUMkQI.png",
+  "home/gratitude/10-sumrai-tete": "https://framerusercontent.com/images/ojsuxSQrE3s9Kp9rV1YOj6jJBxg.png",
+  "home/gratitude/11-maria": "https://framerusercontent.com/images/JqYuP3wf3iknWVlF2TeZO7x97w.png",
+  "home/gratitude/12-betsabe": "https://framerusercontent.com/images/kMJ2NyE0MPkD3dAwhXLPlXvH18.png",
+  "home/gratitude/13-laura": "https://framerusercontent.com/images/BAy3R6TBPvNPFao6BqnVncKZyUk.png",
+  "home/gratitude/14-pallavi-gulati": "https://framerusercontent.com/images/xUBuiIIwODTH2fFNnhQGipQtI.png",
+  "home/gratitude/16-vikash-pandey": "https://framerusercontent.com/images/qbOGxMRljMhDUjqMSYh6tnOxU.png",
 
-  "home/scholarship-01": "https://framerusercontent.com/images/1ohYCst0dzLqJHx9RdOEtUUMkQI.png?width=3760&height=2560",
-  "home/scholarship-02": "https://framerusercontent.com/images/ojsuxSQrE3s9Kp9rV1YOj6jJBxg.png?width=3760&height=2560",
-  "home/scholarship-03": "https://framerusercontent.com/images/JqYuP3wf3iknWVlF2TeZO7x97w.png?width=3760&height=2560",
-  "home/scholarship-04": "https://framerusercontent.com/images/kMJ2NyE0MPkD3dAwhXLPlXvH18.png?width=3760&height=2560",
-  "home/scholarship-05": "https://framerusercontent.com/images/BAy3R6TBPvNPFao6BqnVncKZyUk.png?width=3760&height=2560",
-  "home/scholarship-06": "https://framerusercontent.com/images/xUBuiIIwODTH2fFNnhQGipQtI.png?width=3760&height=2560",
-  "home/scholarship-07": "https://framerusercontent.com/images/qbOGxMRljMhDUjqMSYh6tnOxU.png?width=3760&height=2560",
-  "home/scholarship-08": "https://framerusercontent.com/images/MardBgZaxgeeIiaJWlX7KXdMKyk.png?width=3760&height=2560",
+  // Real Scholarships-carousel posters. Only 2 slides exist on the source
+  // (confirmed by clicking "next" repeatedly until it stopped advancing).
+  "home/scholarships/01-bandana-bose-gold-medal": "https://framerusercontent.com/images/vAN5v4Mr2FzYTB6Cb8cV7uD87PM.png",
+  "home/scholarships/02-nisha-agarwal-memorial": "https://framerusercontent.com/images/Vdd9D4WwQ0hRNlewIQHXOtstQ.png",
+
+  // Real "Alumni Speak" photos (5, matching the 5 alumni testimonials 1:1 by
+  // position — a repeating 5-hash cycle in the DOM, unlike the ambiguous
+  // gratitude-avatar-09..16 set).
+  "home/alumni/01-anuragini-toppo": "https://framerusercontent.com/images/bIiZoibGFPgS4XVkjHt6uOfrlhs.jpg",
+  "home/alumni/02-shahnawaz-akhter": "https://framerusercontent.com/images/0bA7Sn92G8kRXJFpWwHTfFRQ.jpeg",
+  "home/alumni/03-dibyanee-gupta": "https://framerusercontent.com/images/ea2YBeYPapoeszmlzyShzb49PQ.jpg",
+  "home/alumni/04-danish-ahmad": "https://framerusercontent.com/images/6sI3hdwdUuXCVyj2502juTe8.jpg",
+  "home/alumni/05-alisha-raj": "https://framerusercontent.com/images/vqooG1Iow5XkCBRiEv6lDriI0qo.jpeg",
 
   "our-story/01-hamid-hassan": "https://framerusercontent.com/images/ZI1WL0EPinA2tJSzJQDiHTtU.png",
   "our-story/02-habiba-hassan": "https://framerusercontent.com/images/wonIKHiLbHLjlmHGoAlkbiuc4Q.jpg",
   "our-story/03-roshan-ara": "https://framerusercontent.com/images/KlgbIXV1N53fPg3untIKUHgk.jpg",
-  "our-story/04-shadab-hassan": "https://framerusercontent.com/images/255zLKIxXFljtZsZDMuwGfbuY.png?scale-down-to=512",
+  "our-story/04-shadab-hassan": "https://framerusercontent.com/images/255zLKIxXFljtZsZDMuwGfbuY.png",
   "our-story/05-sheeba-nikhar": "https://framerusercontent.com/images/l2G0kqgzMj58WgQrl69ryKIw8E.jpg",
   "our-story/06-asad-iqbal": "https://framerusercontent.com/images/x4IYS75hFo6Xb3hXjHTLxmLG9I.jpg",
   "our-story/07-shahid-hassan": "https://framerusercontent.com/images/ppHbaIdgGYJ40ScwJyqEziUP0.jpg",
   "our-story/08-neha-kaur": "https://framerusercontent.com/images/926HYpAeALtJHQ65j6n9S27gHM.jpg",
 
-  "initiatives/01-reach2teach": "https://framerusercontent.com/images/BaRSB5helhUZFTfU1e56vBFYCIU.png?scale-down-to=1024&width=1696&height=1696",
-  "initiatives/02-live-classroom": "https://framerusercontent.com/images/xKuDUCF0IEK6aAMoMddtmqcAPg.jpg?width=675&height=675",
-  "initiatives/03-volunteer2teach": "https://framerusercontent.com/images/CLpEFYLouq7fPeDEwIaBvSMuQ.jpg?width=700&height=700",
-  "initiatives/04-volunteer2teach-global": "https://framerusercontent.com/images/etFwdUv2R5wC4AWIFq8wuUswlQ.jpg?width=4096&height=4096",
-  "initiatives/05-echoes-of-experience": "https://framerusercontent.com/images/M43cdypColtWJ8nMmj49eqxASLw.jpg?width=640&height=640",
-  "initiatives/06-happy-periods": "https://framerusercontent.com/images/MF1CQiuyxBarPrXoQqH8nAdV8g.jpg?width=900&height=900",
-  "initiatives/07-maatri": "https://framerusercontent.com/images/4gYwWPNy6HxfVFTXeGiXcu5uX1s.jpg?width=540&height=540",
-  "initiatives/08-pehel": "https://framerusercontent.com/images/GyqdzrbCPkNECQrT9XYbGxGSK8.jpg?width=720&height=720",
-  "initiatives/09-health-checkup": "https://framerusercontent.com/images/p2ggkr1A9MbNCNKV7QkY9IrE.jpg?width=864&height=864",
-  "initiatives/10-share-your-laptop": "https://framerusercontent.com/images/yQBD6DBnWyQubAjuQi297RYOnN8.jpg?width=1200&height=1200",
-  "initiatives/11-wow": "https://framerusercontent.com/images/bigN6Kl579Jrb98HBtjEhm1AYxs.jpg?width=425&height=425",
-  "initiatives/12-bless-a-child": "https://framerusercontent.com/images/yDX5EwbxGWDA2JJXUB32h0afmQ.jpg?width=4096&height=4096",
-  "initiatives/13-gift-a-teacher": "https://framerusercontent.com/images/jbO1QskUZ8XPOwOXMQzXvPFXlg.jpg?width=1200&height=1200",
-  "initiatives/14-covid-relief": "https://framerusercontent.com/images/8WZykhZQuciD15zUJVtZrIL2gtY.jpg?width=1148&height=1148",
+  "initiatives/01-reach2teach": "https://framerusercontent.com/images/BaRSB5helhUZFTfU1e56vBFYCIU.png",
+  "initiatives/02-live-classroom": "https://framerusercontent.com/images/xKuDUCF0IEK6aAMoMddtmqcAPg.jpg",
+  "initiatives/03-volunteer2teach": "https://framerusercontent.com/images/CLpEFYLouq7fPeDEwIaBvSMuQ.jpg",
+  "initiatives/04-volunteer2teach-global": "https://framerusercontent.com/images/etFwdUv2R5wC4AWIFq8wuUswlQ.jpg",
+  "initiatives/05-echoes-of-experience": "https://framerusercontent.com/images/M43cdypColtWJ8nMmj49eqxASLw.jpg",
+  "initiatives/06-happy-periods": "https://framerusercontent.com/images/MF1CQiuyxBarPrXoQqH8nAdV8g.jpg",
+  "initiatives/07-maatri": "https://framerusercontent.com/images/4gYwWPNy6HxfVFTXeGiXcu5uX1s.jpg",
+  "initiatives/08-pehel": "https://framerusercontent.com/images/GyqdzrbCPkNECQrT9XYbGxGSK8.jpg",
+  "initiatives/09-health-checkup": "https://framerusercontent.com/images/p2ggkr1A9MbNCNKV7QkY9IrE.jpg",
+  "initiatives/10-share-your-laptop": "https://framerusercontent.com/images/yQBD6DBnWyQubAjuQi297RYOnN8.jpg",
+  "initiatives/11-wow": "https://framerusercontent.com/images/bigN6Kl579Jrb98HBtjEhm1AYxs.jpg",
+  "initiatives/12-bless-a-child": "https://framerusercontent.com/images/yDX5EwbxGWDA2JJXUB32h0afmQ.jpg",
+  "initiatives/13-gift-a-teacher": "https://framerusercontent.com/images/jbO1QskUZ8XPOwOXMQzXvPFXlg.jpg",
+  "initiatives/14-covid-relief": "https://framerusercontent.com/images/8WZykhZQuciD15zUJVtZrIL2gtY.jpg",
 
-  "accolades/01-yuva-prabhodhan": "https://framerusercontent.com/images/kTYkPWElD1nswEXghvQbt2FUKEg.png?scale-down-to=1024",
+  "accolades/01-yuva-prabhodhan": "https://framerusercontent.com/images/kTYkPWElD1nswEXghvQbt2FUKEg.png",
   "accolades/02-rashtriya-swayam-siddh": "https://framerusercontent.com/images/cTAEXBYI6ra6uB5FTYgWBt48iRY.jpg",
   "accolades/03-national-digital-trailblazer": "https://framerusercontent.com/images/mhmXd0umjOONdtb0B1IrewfUkU.jpg",
   "accolades/04-digital-trailblazer-state": "https://framerusercontent.com/images/o0Ur58FmuxVCz8h08XvMKn6eM.jpg",
@@ -125,25 +134,25 @@ const manifest = {
   "accolades/15-met-talk": "https://framerusercontent.com/images/UNJfSjZdbzZfTAgQ8iSyrHZ6F8k.jpg",
   "accolades/16-rotary-ranchi-south": "https://framerusercontent.com/images/7KmhrDKuvanp7qRVeMHbSTc3nmg.jpg",
 
-  "support/hero-banner": "https://framerusercontent.com/images/1Hi1GhZQDoCUOp5w2HaxtonGPpM.png?scale-down-to=2048&width=2160&height=752",
-  "support/us-photo-01": "https://framerusercontent.com/images/tU8yjvVsIoGT5kJoSQSQHvpcw.jpg?width=4096&height=3072",
-  "support/us-photo-02": "https://framerusercontent.com/images/abOQKzHNo5baGtl5sXVixJmrIGY.jpg?width=4000&height=2265",
-  "support/card-bricks-and-beyond": "https://framerusercontent.com/images/n1OrVwxBJSwxNK4Byaygl60zto.jpg?width=960&height=723",
-  "support/card-school-makeover": "https://framerusercontent.com/images/3qmVhktpFaVc9lyksvHyvWprH6s.jpg?width=960&height=636",
+  "support/hero-banner": "https://framerusercontent.com/images/1Hi1GhZQDoCUOp5w2HaxtonGPpM.png",
+  "support/us-photo-01": "https://framerusercontent.com/images/tU8yjvVsIoGT5kJoSQSQHvpcw.jpg",
+  "support/us-photo-02": "https://framerusercontent.com/images/abOQKzHNo5baGtl5sXVixJmrIGY.jpg",
+  "support/card-bricks-and-beyond": "https://framerusercontent.com/images/n1OrVwxBJSwxNK4Byaygl60zto.jpg",
+  "support/card-school-makeover": "https://framerusercontent.com/images/3qmVhktpFaVc9lyksvHyvWprH6s.jpg",
 
-  "support/bricks-photo-01": "https://framerusercontent.com/images/la2GHw5desjPpz4Fgi8oqf5Pl4c.jpg?width=4096&height=3072",
-  "support/bricks-photo-02": "https://framerusercontent.com/images/3ea8OvMJGjyHlrHqREOuzPP1h4E.jpg?width=3072&height=4096",
-  "support/bricks-photo-03": "https://framerusercontent.com/images/uQrZEK2wpMBCsnZDKRR5UkZeMXc.jpg?width=4096&height=3072",
-  "support/bricks-photo-04": "https://framerusercontent.com/images/zbNqHTMJoZpuEWsB02amSasNx0.jpg?width=4000&height=3000",
+  "support/bricks-photo-01": "https://framerusercontent.com/images/la2GHw5desjPpz4Fgi8oqf5Pl4c.jpg",
+  "support/bricks-photo-02": "https://framerusercontent.com/images/3ea8OvMJGjyHlrHqREOuzPP1h4E.jpg",
+  "support/bricks-photo-03": "https://framerusercontent.com/images/uQrZEK2wpMBCsnZDKRR5UkZeMXc.jpg",
+  "support/bricks-photo-04": "https://framerusercontent.com/images/zbNqHTMJoZpuEWsB02amSasNx0.jpg",
 
-  "support/makeover-photo-01": "https://framerusercontent.com/images/baz4gOfDdnhUJcxjwZBQAZ750.jpg?width=4096&height=3072",
-  "support/makeover-photo-02": "https://framerusercontent.com/images/cWqdFYMAjbOkSoXVXEbWqMVMRq8.jpg?width=4000&height=3000",
-  "support/makeover-photo-03": "https://framerusercontent.com/images/BcwK3MG4PxnHzbYz640D6VfNr6I.jpg?width=4096&height=3072",
-  "support/makeover-photo-04": "https://framerusercontent.com/images/hVW2u1XrQbkU9NB34kGDARmBzHc.jpg?width=4000&height=3000",
+  "support/makeover-photo-01": "https://framerusercontent.com/images/baz4gOfDdnhUJcxjwZBQAZ750.jpg",
+  "support/makeover-photo-02": "https://framerusercontent.com/images/cWqdFYMAjbOkSoXVXEbWqMVMRq8.jpg",
+  "support/makeover-photo-03": "https://framerusercontent.com/images/BcwK3MG4PxnHzbYz640D6VfNr6I.jpg",
+  "support/makeover-photo-04": "https://framerusercontent.com/images/hVW2u1XrQbkU9NB34kGDARmBzHc.jpg",
 
-  "support/bless-a-child-photo": "https://framerusercontent.com/images/LoPI1PzKiXXqXSmi3Ipd7hIKXhE.jpg?width=960&height=804",
-  "support/gift-a-teacher-hero": "https://framerusercontent.com/images/d6vuxDm9pl6QDAJA15KlnLsAaIk.png?width=6144&height=1683",
-  "support/gift-a-teacher-photo": "https://framerusercontent.com/images/EaHSrFVLCFYXhyXA15Hm7tcEh8.jpg?width=960&height=539",
+  "support/bless-a-child-photo": "https://framerusercontent.com/images/LoPI1PzKiXXqXSmi3Ipd7hIKXhE.jpg",
+  "support/gift-a-teacher-hero": "https://framerusercontent.com/images/d6vuxDm9pl6QDAJA15KlnLsAaIk.png",
+  "support/gift-a-teacher-photo": "https://framerusercontent.com/images/EaHSrFVLCFYXhyXA15Hm7tcEh8.jpg",
 
   "gallery/in-the-media/mosaic": "https://framerusercontent.com/images/m0cGCrMHzwLH1JoUWYDQSa66X0E.png",
 
@@ -160,7 +169,7 @@ const manifest = {
   "gallery/health-wellbeing/11": "https://framerusercontent.com/images/EFwXjoggFQSIKtmGKLnTsowNt8.jpg",
   "gallery/health-wellbeing/12": "https://framerusercontent.com/images/sMePhN905xz0Vg7k435I0PnJSGA.jpg",
 
-  "gallery/visit-guest/01": "https://framerusercontent.com/images/zd5am2aUKORWJd0YHQ60tFzkdyM.jpg?scale-down-to=1024",
+  "gallery/visit-guest/01": "https://framerusercontent.com/images/zd5am2aUKORWJd0YHQ60tFzkdyM.jpg",
   "gallery/visit-guest/02": "https://framerusercontent.com/images/6HIQOPzOks8Gfi1QH72IUQN7I.jpg",
 
   "gallery/events-celebrations/01": "https://framerusercontent.com/images/XS39qXrlzNTLQ4bBTb9yUpFNlio.jpg",
@@ -189,7 +198,7 @@ const manifest = {
   "gallery/community-engagement/06": "https://framerusercontent.com/images/QOBmCqTDPIIDxnZqo1ltYLvxaVo.jpg",
 
   "gallery/powered-by-people/01": "https://framerusercontent.com/images/agXiTg78hAyVpPQU4WF27jsnU.jpg",
-  "gallery/powered-by-people/02": "https://framerusercontent.com/images/r13EU358P0YdqxkOmtwUhOmans.jpg?scale-down-to=1024",
+  "gallery/powered-by-people/02": "https://framerusercontent.com/images/r13EU358P0YdqxkOmtwUhOmans.jpg",
   "gallery/powered-by-people/03": "https://framerusercontent.com/images/TP40ZYT2wa7kPSy0mJE7LdCGp7k.jpg",
   "gallery/powered-by-people/04": "https://framerusercontent.com/images/IlL4dimnjPsOPazCzTVO06ioqA4.jpg",
   "gallery/powered-by-people/05": "https://framerusercontent.com/images/y2xWjS8iT2BVTnRc32tLeX8iV4.jpg",
@@ -207,5 +216,5 @@ async function worker(queue) {
   }
 }
 const queue = [...entries];
-await Promise.all(Array.from({length: CONCURRENCY}, () => worker(queue)));
+await Promise.all(Array.from({ length: CONCURRENCY }, () => worker(queue)));
 console.log(`Downloaded: ${ok}, Failed: ${fail}, Total: ${entries.length}`);

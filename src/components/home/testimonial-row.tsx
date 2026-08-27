@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
-import { InitialsAvatar } from "@/components/home/initials-avatar";
+import { FramedAvatar } from "@/components/home/framed-avatar";
 import type { Testimonial } from "@/content/testimonials";
 
 export function TestimonialRow({
@@ -28,17 +27,7 @@ export function TestimonialRow({
               &ldquo;{t.quote}&rdquo;
             </blockquote>
             <figcaption className="mt-auto flex items-center gap-3 pt-2">
-              {t.image ? (
-                <Image
-                  src={t.image}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="size-12 rounded-full object-cover"
-                />
-              ) : (
-                <InitialsAvatar name={t.name} />
-              )}
+              <FramedAvatar name={t.name} image={t.image} />
               <div>
                 <p className="font-heading text-sm">{t.name}</p>
                 <p className="text-xs text-muted-foreground">{t.role}</p>

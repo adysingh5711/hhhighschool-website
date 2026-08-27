@@ -27,7 +27,7 @@ export function ScholarshipsCarousel() {
                     src={slide.image}
                     alt={slide.alt}
                     width={1200}
-                    height={818}
+                    height={927}
                     className="h-auto w-full"
                   />
                 </div>

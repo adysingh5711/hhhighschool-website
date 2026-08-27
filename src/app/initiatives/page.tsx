@@ -23,7 +23,7 @@ export default function InitiativesPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {initiatives.map((initiative, i) => (
             <Reveal key={initiative.slug} delay={(i % 3) * 0.05}>
-              <InitiativeCard initiative={initiative} />
+              <InitiativeCard initiative={initiative} index={i} />
             </Reveal>
           ))}
         </div>

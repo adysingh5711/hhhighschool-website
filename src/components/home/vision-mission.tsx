@@ -19,7 +19,7 @@ export function VisionMission() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative min-h-[260px] sm:min-h-0"
+          className="relative min-h-[320px] sm:min-h-[420px]"
         >
           <Image
             src="/images/home/vision-mission-photo.png"

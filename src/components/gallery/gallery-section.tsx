@@ -16,7 +16,7 @@ export function GallerySection({ category }: { category: GalleryCategory }) {
   const isSingleMosaic = category.images.length === 1;
 
   return (
-    <section className="py-10">
+    <section id={category.slug} className="scroll-mt-40 py-10">
       <Reveal>
         <h2
           className="mb-6 text-center font-heading text-xl sm:text-2xl"

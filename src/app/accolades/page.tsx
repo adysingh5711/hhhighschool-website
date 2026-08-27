@@ -23,7 +23,7 @@ export default function AccoladesPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {accolades.map((accolade, i) => (
             <Reveal key={accolade.slug} delay={(i % 2) * 0.05}>
-              <AccoladeCard accolade={accolade} />
+              <AccoladeCard accolade={accolade} index={i} />
             </Reveal>
           ))}
         </div>

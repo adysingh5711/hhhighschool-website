@@ -1,20 +1,12 @@
 import Image from "next/image";
+import { paletteColor, paletteTint } from "@/lib/brand-palette";
 import type { Initiative } from "@/content/initiatives";
 
-const colorVar: Record<Initiative["color"], string> = {
-  story: "var(--brand-story)",
-  initiatives: "var(--brand-initiatives)",
-  accolades: "var(--brand-accolades)",
-  gallery: "var(--brand-gallery)",
-  sky: "var(--brand-sky)",
-  cta: "var(--brand-cta)",
-};
-
-export function InitiativeCard({ initiative }: { initiative: Initiative }) {
+export function InitiativeCard({ initiative, index }: { initiative: Initiative; index: number }) {
   return (
     <div
       className="flex h-full flex-col overflow-hidden rounded-xl shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg"
-      style={{ backgroundColor: `${colorVar[initiative.color]}14` }}
+      style={{ backgroundColor: paletteTint(index) }}
     >
       <div className="relative aspect-square w-full">
         <Image
@@ -26,7 +18,7 @@ export function InitiativeCard({ initiative }: { initiative: Initiative }) {
         />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <h3 className="font-heading text-lg" style={{ color: colorVar[initiative.color] }}>
+        <h3 className="font-heading text-lg" style={{ color: paletteColor(index) }}>
           {initiative.title}
         </h3>
         <p className="text-xs font-medium text-foreground/70">{initiative.subtitle}</p>
