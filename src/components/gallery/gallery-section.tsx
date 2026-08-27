@@ -27,7 +27,7 @@ export function GallerySection({ category }: { category: GalleryCategory }) {
       </Reveal>
       <Reveal delay={0.05}>
         {isSingleMosaic ? (
-          <div className="mx-auto max-w-4xl overflow-hidden rounded-xl border-8 border-brand-initiatives/30 shadow-md">
+          <div className="mx-auto max-w-4xl overflow-hidden rounded-xl">
             <Image
               src={category.images[0]}
               alt={`${category.title} press coverage`}
