@@ -53,7 +53,7 @@ export function GalleryLightbox({
                   alt={`${categoryTitle} photo ${index + 1}`}
                   fill
                   className="object-contain"
-                  sizes="100vw"
+                  sizes="(min-width: 896px) 896px, 100vw"
                 />
               </div>
               {images.length > 1 && (

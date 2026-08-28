@@ -34,6 +34,7 @@ export function GallerySection({ category }: { category: GalleryCategory }) {
               width={1600}
               height={1200}
               className="h-auto w-full"
+              preload
             />
           </div>
         ) : (
