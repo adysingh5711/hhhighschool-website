@@ -140,6 +140,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
+  body {
+    /* Guards against any single element being a hair wider than the viewport (the
+       classic cause of a thin edge strip + horizontal rubber-band on mobile). */
+    overflow-x: hidden;
+    overscroll-behavior: none;
+  }
   body {
     @apply bg-background text-foreground;
   }

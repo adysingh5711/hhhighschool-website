@@ -32,7 +32,7 @@ export function ScholarshipsCarousel() {
             Scholarships Offered
           </h2>
         </Reveal>
-        <Carousel opts={{ loop: true, align: "start" }} setApi={setApi} className="px-10">
+        <Carousel opts={{ loop: true, align: "start" }} setApi={setApi} className="px-6 sm:px-10">
           <CarouselContent>
             {scholarshipSlides.map((slide) => (
               <CarouselItem key={slide.image} className="lg:basis-1/2">
