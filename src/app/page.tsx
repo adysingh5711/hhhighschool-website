@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/hero";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { LeadershipNotes } from "@/components/home/leadership-notes";
@@ -10,6 +11,25 @@ import { AlumniRow } from "@/components/home/alumni-row";
 import { ContactCards } from "@/components/home/contact-cards";
 import type { Media } from "@/payload-types";
 import { getCMS } from "@/lib/payload";
+
+export const metadata: Metadata = {
+  title: "H. H. High School, Brambe | Rural Education in Jharkhand",
+  description:
+    "Hamid Hassan High School combines child-centered education with strong academics, life skills, and values. Award-winning school serving 1000+ students in Brambe, Jharkhand.",
+  canonical: "https://hhhighschool.org",
+  openGraph: {
+    title: "H. H. High School, Brambe",
+    description:
+      "Award-winning rural school in Jharkhand committed to child-centered, values-based education.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
 
 export default async function Home() {
   const payload = await getCMS();

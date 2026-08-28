@@ -3,6 +3,8 @@ import { Anton, Inter } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MotionConfigProvider } from "@/components/layout/motion-config-provider";
+import { JsonLd } from "@/components/seo/json-ld";
+import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
 
 const anton = Anton({
@@ -23,11 +25,43 @@ export const metadata: Metadata = {
   },
   description:
     "Hamid Hassan High School (H. H. High School), Brambe, Jharkhand — outperforming ourselves, each day. A rural school built on child-centered, values-based, affordable education.",
+  metadataBase: new URL("https://hhhighschool.org"),
+  canonical: "https://hhhighschool.org",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://hhhighschool.org",
+    siteName: "H. H. High School",
+    title: "H. H. High School, Brambe",
+    description:
+      "A rural school in Jharkhand built on child-centered, values-based, affordable education. Outperforming ourselves, each day.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "H. H. High School, Brambe",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@HHHS_Brambe",
+    creator: "@HHHS_Brambe",
+    title: "H. H. High School, Brambe",
+    description:
+      "A rural school in Jharkhand built on child-centered, values-based, affordable education.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${anton.variable} ${inter.variable} h-full antialiased`}>
+      <head>
+        <JsonLd data={organizationSchema()} />
+      </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <MotionConfigProvider>
           <Header />
