@@ -95,8 +95,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'our-story': OurStory;
+  };
+  globalsSelect: {
+    'our-story': OurStorySelect<false> | OurStorySelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -454,6 +458,80 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story".
+ */
+export interface OurStory {
+  id: number;
+  storyParagraphs: {
+    paragraph: string;
+    id?: string | null;
+  }[];
+  storyPortraits: {
+    name: string;
+    image: number | Media;
+    id?: string | null;
+  }[];
+  foundationsBanner: number | Media;
+  foundations: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  sdgGoals: {
+    number: number;
+    name: string;
+    bg: number | Media;
+    icon: number | Media;
+    color: string;
+    description: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story_select".
+ */
+export interface OurStorySelect<T extends boolean = true> {
+  storyParagraphs?:
+    | T
+    | {
+        paragraph?: T;
+        id?: T;
+      };
+  storyPortraits?:
+    | T
+    | {
+        name?: T;
+        image?: T;
+        id?: T;
+      };
+  foundationsBanner?: T;
+  foundations?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  sdgGoals?:
+    | T
+    | {
+        number?: T;
+        name?: T;
+        bg?: T;
+        icon?: T;
+        color?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

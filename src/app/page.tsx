@@ -8,16 +8,42 @@ import { CelebrateEffortsVideo } from "@/components/home/celebrate-efforts-video
 import { ScholarshipsCarousel } from "@/components/home/scholarships-carousel";
 import { AlumniRow } from "@/components/home/alumni-row";
 import { ContactCards } from "@/components/home/contact-cards";
-import { gratitudeTestimonials } from "@/content/testimonials";
+import type { Media } from "@/payload-types";
+import { getCMS } from "@/lib/payload";
 
-export default function Home() {
+export default async function Home() {
+  const payload = await getCMS();
+  const { docs } = await payload.find({
+    collection: "gratitude-testimonials",
+    sort: "order",
+    limit: 0,
+  });
+  const gratitudeTestimonials = docs.map((doc) => ({
+    quote: doc.quote,
+    name: doc.name,
+    role: doc.role,
+    image: doc.image ? (doc.image as Media).url ?? undefined : undefined,
+  }));
+
+  const story = await payload.findGlobal({ slug: "our-story" });
+  const foundations = story.foundations.map((f) => ({ title: f.title, description: f.description }));
+  const foundationsBanner = (story.foundationsBanner as Media).url ?? "";
+  const sdgGoals = story.sdgGoals.map((g) => ({
+    number: g.number,
+    name: g.name,
+    bg: (g.bg as Media).url ?? "",
+    icon: (g.icon as Media).url ?? "",
+    color: g.color,
+    description: g.description,
+  }));
+
   return (
     <>
       <Hero />
       <SubNavPills variant="hero" />
       <LeadershipNotes />
-      <Foundations />
-      <SdgSection />
+      <Foundations foundations={foundations} foundationsBanner={foundationsBanner} />
+      <SdgSection sdgGoals={sdgGoals} />
       <VisionMission />
       <TestimonialRow title="Gratitude & Impressions" testimonials={gratitudeTestimonials} />
       <CelebrateEffortsVideo />

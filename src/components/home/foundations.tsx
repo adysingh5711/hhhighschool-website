@@ -1,18 +1,21 @@
 import Image from "next/image";
 import { Reveal } from "@/components/layout/reveal";
-import { foundations, foundationsBanner, sdgGoals } from "@/content/story";
+import { paletteColor } from "@/lib/brand-palette";
 
-const colorVar: Record<string, string> = {
-  story: "var(--brand-story)",
-  initiatives: "var(--brand-initiatives)",
-  accolades: "var(--brand-accolades)",
-  gallery: "var(--brand-gallery)",
+type FoundationItem = { title: string; description: string };
+type SdgGoal = {
+  number: number;
+  name: string;
+  bg: string;
+  icon: string;
+  color: string;
+  description: string;
 };
 
-function FoundationCard({ f }: { f: (typeof foundations)[number] }) {
+function FoundationCard({ f, index }: { f: FoundationItem; index: number }) {
   return (
     <div className="flex h-full flex-col justify-center gap-3 rounded-xl bg-white p-8 text-center">
-      <h3 className="font-heading text-lg" style={{ color: colorVar[f.color] }}>
+      <h3 className="font-heading text-lg" style={{ color: paletteColor(index) }}>
         {f.title}
       </h3>
       <p className="text-sm text-foreground/80 italic">{f.description}</p>
@@ -20,7 +23,13 @@ function FoundationCard({ f }: { f: (typeof foundations)[number] }) {
   );
 }
 
-export function Foundations() {
+export function Foundations({
+  foundations,
+  foundationsBanner,
+}: {
+  foundations: FoundationItem[];
+  foundationsBanner: string;
+}) {
   const [left, right] = [foundations.slice(0, 3), foundations.slice(3, 6)];
 
   return (
@@ -37,7 +46,7 @@ export function Foundations() {
           <div className="flex flex-col gap-6">
             {left.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.05} className="flex-1">
-                <FoundationCard f={f} />
+                <FoundationCard f={f} index={i} />
               </Reveal>
             ))}
           </div>
@@ -53,7 +62,7 @@ export function Foundations() {
           <div className="flex flex-col gap-6">
             {right.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.05} className="flex-1">
-                <FoundationCard f={f} />
+                <FoundationCard f={f} index={i + 3} />
               </Reveal>
             ))}
           </div>
@@ -75,7 +84,7 @@ export function Foundations() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {foundations.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.05}>
-                <FoundationCard f={f} />
+                <FoundationCard f={f} index={i} />
               </Reveal>
             ))}
           </div>
@@ -85,7 +94,7 @@ export function Foundations() {
   );
 }
 
-export function SdgSection() {
+export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
   return (
     <section className="px-6 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">

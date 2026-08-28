@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { StoryPortrait } from "@/components/our-story/story-portrait";
-import { storyParagraphs, storyPortraits } from "@/content/story";
+import type { Media } from "@/payload-types";
+import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Our Story",
@@ -10,7 +11,15 @@ export const metadata: Metadata = {
     "How Hamid Hassan High School began in the village of Brambe, Jharkhand, and grew from 80 children and six teachers into a movement.",
 };
 
-export default function OurStoryPage() {
+export default async function OurStoryPage() {
+  const payload = await getCMS();
+  const story = await payload.findGlobal({ slug: "our-story" });
+  const storyParagraphs = story.storyParagraphs.map((p) => p.paragraph);
+  const storyPortraits = story.storyPortraits.map((p) => ({
+    name: p.name,
+    image: (p.image as Media).url ?? "",
+  }));
+
   return (
     <>
       <SubNavPills />

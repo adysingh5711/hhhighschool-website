@@ -12,6 +12,7 @@ import { Initiatives } from "./collections/Initiatives";
 import { Accolades } from "./collections/Accolades";
 import { GratitudeTestimonials } from "./collections/GratitudeTestimonials";
 import { AlumniTestimonials } from "./collections/AlumniTestimonials";
+import { OurStory } from "./globals/OurStory";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,6 +25,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Initiatives, Accolades, GratitudeTestimonials, AlumniTestimonials],
+  globals: [OurStory],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
