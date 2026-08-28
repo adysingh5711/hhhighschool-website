@@ -73,6 +73,7 @@ export interface Config {
     accolades: Accolade;
     'gratitude-testimonials': GratitudeTestimonial;
     'alumni-testimonials': AlumniTestimonial;
+    'gallery-images': GalleryImage;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     accolades: AccoladesSelect<false> | AccoladesSelect<true>;
     'gratitude-testimonials': GratitudeTestimonialsSelect<false> | GratitudeTestimonialsSelect<true>;
     'alumni-testimonials': AlumniTestimonialsSelect<false> | AlumniTestimonialsSelect<true>;
+    'gallery-images': GalleryImagesSelect<false> | GalleryImagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -235,6 +237,24 @@ export interface AlumniTestimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-images".
+ */
+export interface GalleryImage {
+  id: number;
+  image: number | Media;
+  category:
+    | 'in-the-media'
+    | 'health-wellbeing'
+    | 'visit-guest-interactions'
+    | 'events-celebrations'
+    | 'student-creativity'
+    | 'community-engagement'
+    | 'powered-by-people';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -280,6 +300,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'alumni-testimonials';
         value: number | AlumniTestimonial;
+      } | null)
+    | ({
+        relationTo: 'gallery-images';
+        value: number | GalleryImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -416,6 +440,16 @@ export interface AlumniTestimonialsSelect<T extends boolean = true> {
   role?: T;
   image?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-images_select".
+ */
+export interface GalleryImagesSelect<T extends boolean = true> {
+  image?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }

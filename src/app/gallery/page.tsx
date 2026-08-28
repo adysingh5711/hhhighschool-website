@@ -3,6 +3,8 @@ import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { GallerySection } from "@/components/gallery/gallery-section";
 import { galleryCategories } from "@/content/gallery";
+import type { Media } from "@/payload-types";
+import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -10,7 +12,26 @@ export const metadata: Metadata = {
     "Photos from H. H. High School, Brambe — press coverage, health & wellbeing camps, guest visits, celebrations, student creativity, and community life.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const payload = await getCMS();
+  const { docs } = await payload.find({
+    collection: "gallery-images",
+    sort: "createdAt",
+    limit: 0,
+  });
+  const imagesByCategory = new Map<string, string[]>();
+  for (const doc of docs) {
+    const url = (doc.image as Media).url;
+    if (!url) continue;
+    const list = imagesByCategory.get(doc.category) ?? [];
+    list.push(url);
+    imagesByCategory.set(doc.category, list);
+  }
+  const categoriesWithImages = galleryCategories.map((category) => ({
+    ...category,
+    images: imagesByCategory.get(category.slug) ?? [],
+  }));
+
   return (
     <>
       <SubNavPills />
@@ -21,7 +42,7 @@ export default function GalleryPage() {
           </h1>
         </Reveal>
         <div className="divide-y">
-          {galleryCategories.map((category) => (
+          {categoriesWithImages.map((category) => (
             <GallerySection key={category.slug} category={category} />
           ))}
         </div>
