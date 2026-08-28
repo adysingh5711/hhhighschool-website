@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    initiatives: Initiative;
+    accolades: Accolade;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +80,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    initiatives: InitiativesSelect<false> | InitiativesSelect<true>;
+    accolades: AccoladesSelect<false> | AccoladesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -163,6 +167,36 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "initiatives".
+ */
+export interface Initiative {
+  id: number;
+  title: string;
+  slug: string;
+  subtitle: string;
+  description: string;
+  image: number | Media;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accolades".
+ */
+export interface Accolade {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  image: number | Media;
+  linkLabel: 'Watch Video' | 'View more';
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,6 +226,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'initiatives';
+        value: number | Initiative;
+      } | null)
+    | ({
+        relationTo: 'accolades';
+        value: number | Accolade;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -274,6 +316,34 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "initiatives_select".
+ */
+export interface InitiativesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  subtitle?: T;
+  description?: T;
+  image?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accolades_select".
+ */
+export interface AccoladesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  image?: T;
+  linkLabel?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { AccoladeCard } from "@/components/accolades/accolade-card";
-import { accolades } from "@/content/accolades";
+import type { Media } from "@/payload-types";
+import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Accolades",
@@ -10,7 +11,17 @@ export const metadata: Metadata = {
     "Press coverage, TEDx talks, national and state Digital Trailblazer awards, and other recognition earned by H. H. High School, Brambe.",
 };
 
-export default function AccoladesPage() {
+export default async function AccoladesPage() {
+  const payload = await getCMS();
+  const { docs } = await payload.find({ collection: "accolades", sort: "order", limit: 0 });
+  const accolades = docs.map((doc) => ({
+    slug: doc.slug,
+    title: doc.title,
+    description: doc.description,
+    image: (doc.image as Media).url ?? "",
+    linkLabel: doc.linkLabel,
+  }));
+
   return (
     <>
       <SubNavPills />

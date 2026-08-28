@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { InitiativeCard } from "@/components/initiatives/initiative-card";
-import { initiatives } from "@/content/initiatives";
+import type { Media } from "@/payload-types";
+import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Initiatives",
@@ -10,7 +11,17 @@ export const metadata: Metadata = {
     "REACH2teach, LIVE Classroom, VOLUNTEER2teach, Happy Periods, Maatri, Pehel and the other programs run by H. H. High School, Brambe.",
 };
 
-export default function InitiativesPage() {
+export default async function InitiativesPage() {
+  const payload = await getCMS();
+  const { docs } = await payload.find({ collection: "initiatives", sort: "order", limit: 0 });
+  const initiatives = docs.map((doc) => ({
+    slug: doc.slug,
+    title: doc.title,
+    subtitle: doc.subtitle,
+    description: doc.description,
+    image: (doc.image as Media).url ?? "",
+  }));
+
   return (
     <>
       <SubNavPills />
