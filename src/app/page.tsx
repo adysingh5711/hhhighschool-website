@@ -33,19 +33,28 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const payload = await getCMS();
-  const { docs } = await payload.find({
-    collection: "gratitude-testimonials",
-    sort: "order",
-    limit: 0,
-  });
-  const gratitudeTestimonials = docs.map((doc) => ({
+  const [{ docs: gratitudeDocs }, story, { docs: alumniDocs }] = await Promise.all([
+    payload.find({ collection: "gratitude-testimonials", sort: "order", limit: 0 }),
+    payload.findGlobal({ slug: "our-story" }),
+    payload.find({ collection: "alumni-testimonials", sort: "order", limit: 0 }),
+  ]);
+
+  const gratitudeTestimonials = gratitudeDocs.map((doc) => ({
     quote: doc.quote,
     name: doc.name,
     role: doc.role,
     image: doc.image ? (doc.image as Media).url ?? undefined : undefined,
   }));
 
-  const story = await payload.findGlobal({ slug: "our-story" });
+  const alumniTestimonials = alumniDocs.map((doc) => ({
+    quote: doc.quote,
+    name: doc.name,
+    year: doc.year,
+    qualification: doc.qualification,
+    role: doc.role,
+    image: (doc.image as Media).url ?? "",
+  }));
+
   const foundations = story.foundations.map((f) => ({ title: f.title, description: f.description }));
   const foundationsBanner = (story.foundationsBanner as Media).url ?? "";
   const sdgGoals = story.sdgGoals.map((g) => ({
@@ -68,7 +77,7 @@ export default async function Home() {
       <TestimonialRow title="Gratitude & Impressions" testimonials={gratitudeTestimonials} />
       <CelebrateEffortsVideo />
       <ScholarshipsCarousel />
-      <AlumniRow />
+      <AlumniRow alumniTestimonials={alumniTestimonials} />
       <ContactCards />
     </>
   );

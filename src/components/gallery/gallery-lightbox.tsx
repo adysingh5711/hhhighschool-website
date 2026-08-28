@@ -9,9 +9,11 @@ import { Button } from "@/components/ui/button";
 export function GalleryLightbox({
   images,
   categoryTitle,
+  priority = false,
 }: {
   images: string[];
   categoryTitle: string;
+  priority?: boolean;
 }) {
   const [index, setIndex] = useState<number | null>(null);
   const open = index !== null;
@@ -37,6 +39,7 @@ export function GalleryLightbox({
               fill
               className="object-cover transition-transform duration-200 group-hover:scale-105"
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+              priority={priority && i < 4}
             />
           </button>
         ))}

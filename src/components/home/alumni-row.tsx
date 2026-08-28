@@ -3,25 +3,17 @@ import { Quote } from "lucide-react";
 import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
 import { paletteColor } from "@/lib/brand-palette";
-import type { Media } from "@/payload-types";
-import { getCMS } from "@/lib/payload";
 
-export async function AlumniRow() {
-  const payload = await getCMS();
-  const { docs } = await payload.find({
-    collection: "alumni-testimonials",
-    sort: "order",
-    limit: 0,
-  });
-  const alumniTestimonials = docs.map((doc) => ({
-    quote: doc.quote,
-    name: doc.name,
-    year: doc.year,
-    qualification: doc.qualification,
-    role: doc.role,
-    image: (doc.image as Media).url ?? "",
-  }));
+type AlumniTestimonial = {
+  quote: string;
+  name: string;
+  year: string;
+  qualification: string;
+  role: string;
+  image: string;
+};
 
+export function AlumniRow({ alumniTestimonials }: { alumniTestimonials: AlumniTestimonial[] }) {
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">

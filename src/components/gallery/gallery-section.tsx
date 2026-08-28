@@ -12,7 +12,13 @@ const colorVar: Record<GalleryCategory["color"], string> = {
   cta: "var(--brand-cta)",
 };
 
-export function GallerySection({ category }: { category: GalleryCategory }) {
+export function GallerySection({
+  category,
+  priority = false,
+}: {
+  category: GalleryCategory;
+  priority?: boolean;
+}) {
   const isSingleMosaic = category.images.length === 1;
 
   return (
@@ -34,11 +40,12 @@ export function GallerySection({ category }: { category: GalleryCategory }) {
               width={1600}
               height={1200}
               className="h-auto w-full"
-              preload
+              sizes="(min-width: 896px) 896px, 100vw"
+              priority={priority}
             />
           </div>
         ) : (
-          <GalleryLightbox images={category.images} categoryTitle={category.title} />
+          <GalleryLightbox images={category.images} categoryTitle={category.title} priority={priority} />
         )}
       </Reveal>
     </section>

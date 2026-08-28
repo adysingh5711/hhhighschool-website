@@ -56,8 +56,8 @@ export default async function GalleryPage() {
           </h1>
         </Reveal>
         <div className="divide-y">
-          {categoriesWithImages.map((category) => (
-            <GallerySection key={category.slug} category={category} />
+          {categoriesWithImages.map((category, i) => (
+            <GallerySection key={category.slug} category={category} priority={i === 0} />
           ))}
         </div>
       </div>
