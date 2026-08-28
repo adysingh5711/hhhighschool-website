@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/footer";
 import { MotionConfigProvider } from "@/components/layout/motion-config-provider";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationSchema } from "@/lib/structured-data";
-import "./globals.css";
+import "../globals.css";
 
 const anton = Anton({
   variable: "--font-anton",
