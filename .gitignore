@@ -44,5 +44,7 @@ next-env.d.ts
 # ignored files
 plan.md
 nm.md
+SEO_CONTENT_GUIDE.md
+SEO_IMPLEMENTATION_STATUS.md
 
 .neon
