@@ -91,6 +91,10 @@ export function Marquee({
         onMouseEnter={() => (pausedRef.current = true)}
         onMouseLeave={() => (pausedRef.current = false)}
         onPointerDown={() => (pausedRef.current = true)}
+        // Touch has no "leave" event to resume on, so pick the drift back up shortly
+        // after the finger lifts (tap, swipe, or an interrupted gesture) instead.
+        onPointerUp={pauseThenResume}
+        onPointerCancel={pauseThenResume}
         onKeyDown={(e) => {
           if (e.key === "ArrowLeft") {
             e.preventDefault();
