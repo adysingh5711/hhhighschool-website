@@ -2,18 +2,39 @@ import type { Metadata } from "next";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { InitiativeCard } from "@/components/initiatives/initiative-card";
+import { JsonLd } from "@/components/seo/json-ld";
+import { articleSchema } from "@/lib/structured-data";
 import type { Media } from "@/payload-types";
 import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
-  title: "Initiatives",
+  title: "Our Initiatives | Student-Centered Programs at H. H. High School",
   description:
-    "REACH2teach, LIVE Classroom, VOLUNTEER2teach, Happy Periods, Maatri, Pehel and the other programs run by H. H. High School, Brambe.",
+    "Explore our impact programs: REACH2teach, LIVE Classroom, VOLUNTEER2teach, Happy Periods, Maatri, Pehel and more. Student-centered initiatives for holistic development.",
+  canonical: "https://hhhighschool.org/initiatives",
+  openGraph: {
+    title: "Our Initiatives — H. H. High School",
+    description:
+      "Student-centered programs in academics, health, life skills, and sustainability.",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function InitiativesPage() {
   const payload = await getCMS();
   const { docs } = await payload.find({ collection: "initiatives", sort: "order", limit: 0 });
+
+  const schemaData = articleSchema(
+    "Our Initiatives",
+    "Explore our student-centered programs including REACH2teach, LIVE Classroom, and initiatives for holistic development."
+  );
   const initiatives = docs.map((doc) => ({
     slug: doc.slug,
     title: doc.title,
@@ -24,6 +45,7 @@ export default async function InitiativesPage() {
 
   return (
     <>
+      <JsonLd data={schemaData} />
       <SubNavPills />
       <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <Reveal>

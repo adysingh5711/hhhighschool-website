@@ -2,18 +2,39 @@ import type { Metadata } from "next";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { AccoladeCard } from "@/components/accolades/accolade-card";
+import { JsonLd } from "@/components/seo/json-ld";
+import { articleSchema } from "@/lib/structured-data";
 import type { Media } from "@/payload-types";
 import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
-  title: "Accolades",
+  title: "Accolades & Recognition | Awards for H. H. High School",
   description:
-    "Press coverage, TEDx talks, national and state Digital Trailblazer awards, and other recognition earned by H. H. High School, Brambe.",
+    "National recognition including Digital Trailblazer awards, TEDx talks, press coverage, and impact achievements. See how H. H. High School is leading rural education innovation.",
+  canonical: "https://hhhighschool.org/accolades",
+  openGraph: {
+    title: "Accolades & Recognition — H. H. High School",
+    description:
+      "Award-winning rural school recognized for educational excellence and innovation.",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function AccoladesPage() {
   const payload = await getCMS();
   const { docs } = await payload.find({ collection: "accolades", sort: "order", limit: 0 });
+
+  const schemaData = articleSchema(
+    "Accolades & Recognition",
+    "National recognition and awards including Digital Trailblazer awards, TEDx talks, and press coverage for educational excellence."
+  );
   const accolades = docs.map((doc) => ({
     slug: doc.slug,
     title: doc.title,
@@ -24,6 +45,7 @@ export default async function AccoladesPage() {
 
   return (
     <>
+      <JsonLd data={schemaData} />
       <SubNavPills />
       <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <Reveal>

@@ -6,9 +6,23 @@ import { ProgramCard } from "@/components/support/program-card";
 import { supportPrograms, supportUsIntro } from "@/content/supportPrograms";
 
 export const metadata: Metadata = {
-  title: "Support Us",
+  title: "Support Us | Donate to H. H. High School Education",
   description:
-    "Support Education. Restore Hope. Empower Lives. Ways to give to H. H. High School, Brambe — infrastructure, classroom makeovers, child sponsorship, and teacher salaries.",
+    "Make an impact: Support Education. Restore Hope. Empower Lives. Contribute to infrastructure, scholarships, teacher development, and student programs at H. H. High School.",
+  canonical: "https://hhhighschool.org/support-us",
+  openGraph: {
+    title: "Support Us — H. H. High School",
+    description:
+      "Donate to support rural education and student empowerment in Brambe.",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const cardColor = { accolades: "bg-brand-accolades", story: "bg-brand-story", gallery: "bg-brand-gallery" } as const;

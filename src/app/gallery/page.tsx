@@ -7,9 +7,23 @@ import type { Media } from "@/payload-types";
 import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
-  title: "Gallery",
+  title: "Gallery | Photos from H. H. High School, Brambe",
   description:
-    "Photos from H. H. High School, Brambe — press coverage, health & wellbeing camps, guest visits, celebrations, student creativity, and community life.",
+    "Photo gallery showcasing student life, celebrations, health camps, community events, and impact moments at H. H. High School in Brambe, Jharkhand.",
+  canonical: "https://hhhighschool.org/gallery",
+  openGraph: {
+    title: "Gallery — H. H. High School",
+    description:
+      "Visual stories from our school community in Brambe, Jharkhand.",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function GalleryPage() {

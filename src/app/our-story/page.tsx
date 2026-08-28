@@ -2,13 +2,29 @@ import type { Metadata } from "next";
 import { SubNavPills } from "@/components/layout/sub-nav-pills";
 import { Reveal } from "@/components/layout/reveal";
 import { StoryPortrait } from "@/components/our-story/story-portrait";
+import { JsonLd } from "@/components/seo/json-ld";
+import { articleSchema } from "@/lib/structured-data";
 import type { Media } from "@/payload-types";
 import { getCMS } from "@/lib/payload";
 
 export const metadata: Metadata = {
-  title: "Our Story",
+  title: "Our Story | H. H. High School — From Brambe to a Movement",
   description:
-    "How Hamid Hassan High School began in the village of Brambe, Jharkhand, and grew from 80 children and six teachers into a movement.",
+    "Discover how H. H. High School grew from 80 students and six teachers into a celebrated rural education movement. Read the inspiring journey of our school in Brambe.",
+  canonical: "https://hhhighschool.org/our-story",
+  openGraph: {
+    title: "Our Story — H. H. High School Journey",
+    description:
+      "How a village school in Brambe became a model for rural education in India.",
+    type: "article",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function OurStoryPage() {
@@ -22,6 +38,7 @@ export default async function OurStoryPage() {
 
   return (
     <>
+      <JsonLd data={articleSchema("Our Story", "How H. H. High School grew from 80 students and six teachers into a celebrated rural education movement.")} />
       <SubNavPills />
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-12 sm:py-16 lg:grid-cols-3">
         <div className="lg:col-span-2">
