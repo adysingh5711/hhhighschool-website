@@ -18,12 +18,15 @@ export const metadata: Metadata = {
     title: "Our Initiatives — H. H. High School",
     description:
       "Student-centered programs in academics, health, life skills, and sustainability.",
+    url: "https://hhhighschool.org/initiatives",
+    siteName: "H. H. High School",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hhhighschool-website.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "H. H. High School, Brambe",
       },
     ],
   },

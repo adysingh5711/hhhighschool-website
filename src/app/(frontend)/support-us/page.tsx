@@ -16,12 +16,15 @@ export const metadata: Metadata = {
     title: "Support Us — H. H. High School",
     description:
       "Donate to support rural education and student empowerment in Brambe.",
+    url: "https://hhhighschool.org/support-us",
+    siteName: "H. H. High School",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hhhighschool-website.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "H. H. High School, Brambe",
       },
     ],
   },

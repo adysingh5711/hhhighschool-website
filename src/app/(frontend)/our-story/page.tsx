@@ -18,12 +18,15 @@ export const metadata: Metadata = {
     title: "Our Story — H. H. High School Journey",
     description:
       "How a village school in Brambe became a model for rural education in India.",
+    url: "https://hhhighschool.org/our-story",
+    siteName: "H. H. High School",
     type: "article",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hhhighschool-website.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "H. H. High School, Brambe",
       },
     ],
   },

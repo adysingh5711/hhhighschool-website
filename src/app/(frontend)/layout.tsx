@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "A rural school in Jharkhand built on child-centered, values-based, affordable education. Outperforming ourselves, each day.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hhhighschool-website.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "H. H. High School, Brambe",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "H. H. High School, Brambe",
     description:
       "A rural school in Jharkhand built on child-centered, values-based, affordable education.",
-    images: ["/og-image.jpg"],
+    images: ["https://hhhighschool-website.vercel.app/og-image.jpg"],
   },
 };
 

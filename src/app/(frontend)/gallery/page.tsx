@@ -17,12 +17,15 @@ export const metadata: Metadata = {
     title: "Gallery — H. H. High School",
     description:
       "Visual stories from our school community in Brambe, Jharkhand.",
+    url: "https://hhhighschool.org/gallery",
+    siteName: "H. H. High School",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hhhighschool-website.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "H. H. High School, Brambe",
       },
     ],
   },

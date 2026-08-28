@@ -18,12 +18,15 @@ export const metadata: Metadata = {
     title: "Accolades & Recognition — H. H. High School",
     description:
       "Award-winning rural school recognized for educational excellence and innovation.",
+    url: "https://hhhighschool.org/accolades",
+    siteName: "H. H. High School",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hhhighschool-website.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "H. H. High School, Brambe",
       },
     ],
   },
