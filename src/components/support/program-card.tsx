@@ -30,7 +30,8 @@ export function ProgramCard({ program }: { program: SupportProgram }) {
         </Link>
         <Button
           nativeButton={false}
-          className="mx-auto mt-2 gap-1.5 bg-brand-cta text-brand-cta-foreground hover:bg-brand-cta/90"
+          variant="cta"
+          className="mx-auto mt-2 gap-1.5"
           render={
             <a href={program.ctaHref} target="_blank" rel="noopener noreferrer" />
           }

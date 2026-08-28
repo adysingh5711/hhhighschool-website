@@ -29,7 +29,8 @@ export function Hero() {
         </h1>
         <Button
           size="lg"
-          className="h-auto gap-2 bg-brand-cta px-6 py-3 text-base text-brand-cta-foreground hover:bg-brand-cta/90"
+          variant="cta"
+          className="h-auto gap-2 px-6 py-3 text-base"
           onClick={() => setOpen(true)}
         >
           <Play className="size-4 fill-current" />

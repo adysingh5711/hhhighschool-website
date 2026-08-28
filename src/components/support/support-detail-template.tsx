@@ -66,7 +66,8 @@ export function SupportDetailTemplate({ program }: { program: SupportProgram }) 
             <Button
               size="lg"
               nativeButton={false}
-              className="gap-2 bg-brand-cta text-brand-cta-foreground hover:bg-brand-cta/90"
+              variant="cta"
+              className="gap-2"
               render={<a href={program.ctaHref} target="_blank" rel="noopener noreferrer" />}
             >
               {program.ctaLabel}

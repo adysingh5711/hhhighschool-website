@@ -2,27 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FacebookIcon, InstagramIcon, YoutubeIcon, XIcon } from "@/components/icons/social-icons";
-import { site, socials, footerQuickLinks, footerLegalLinks } from "@/content/site";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  Instagram: InstagramIcon,
-  Youtube: YoutubeIcon,
-  "X (Twitter)": XIcon,
-};
+import { SocialLinks } from "@/components/layout/social-links";
+import { site, footerQuickLinks, footerLegalLinks } from "@/content/site";
+import { handleLogoClick } from "@/lib/handle-logo-click";
 
 export function Footer() {
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (window.location.pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      if (window.location.hash) {
-        window.history.pushState("", document.title, window.location.pathname);
-      }
-    }
-  };
-
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -83,21 +67,10 @@ export function Footer() {
         <div>
           <h3 className="mb-4 text-sm font-heading tracking-wide">Follow Us</h3>
           <div className="flex gap-3">
-            {socials.map((s) => {
-              const Icon = socialIcons[s.name as keyof typeof socialIcons];
-              return (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.name}
-                  className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
-                >
-                  <Icon className="size-4" />
-                </a>
-              );
-            })}
+            <SocialLinks
+              className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
+              iconClassName="size-4"
+            />
           </div>
         </div>
       </div>

@@ -126,7 +126,6 @@ export type AlumniTestimonial = {
   year: string;
   qualification: string;
   role: string;
-  color: "story" | "initiatives" | "accolades" | "gallery";
   image: string;
 };
 
@@ -138,7 +137,6 @@ export const alumniTestimonials: AlumniTestimonial[] = [
     year: "2012",
     qualification: "B.Ed. (Central University of Jharkhand)",
     role: "Teacher",
-    color: "accolades",
     image: "/images/home/alumni/01-anuragini-toppo.jpg",
   },
   {
@@ -148,7 +146,6 @@ export const alumniTestimonials: AlumniTestimonial[] = [
     year: "2014",
     qualification: "MBBS, MD (Medicine)",
     role: "Medical Officer",
-    color: "initiatives",
     image: "/images/home/alumni/02-shahnawaz-akhter.jpg",
   },
   {
@@ -158,7 +155,6 @@ export const alumniTestimonials: AlumniTestimonial[] = [
     year: "2012",
     qualification: "M.Sc. (Chemistry), B.Sc. (Forensic Science)",
     role: "Teacher",
-    color: "gallery",
     image: "/images/home/alumni/03-dibyanee-gupta.jpg",
   },
   {
@@ -168,7 +164,6 @@ export const alumniTestimonials: AlumniTestimonial[] = [
     year: "2015",
     qualification: "B.Sc. (Mathematics), B.Ed.",
     role: "SSC Aspirant",
-    color: "story",
     image: "/images/home/alumni/04-danish-ahmad.jpg",
   },
   {
@@ -178,7 +173,6 @@ export const alumniTestimonials: AlumniTestimonial[] = [
     year: "2017",
     qualification: "M.A. in Journalism & Mass Communication, Central University of Odisha",
     role: "Intern at NDTV India",
-    color: "accolades",
     image: "/images/home/alumni/05-alisha-raj.jpg",
   },
 ];

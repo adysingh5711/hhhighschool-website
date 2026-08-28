@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-import { FacebookIcon, InstagramIcon, YoutubeIcon, XIcon } from "@/components/icons/social-icons";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -14,14 +13,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { site, socials } from "@/content/site";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  Instagram: InstagramIcon,
-  Youtube: YoutubeIcon,
-  "X (Twitter)": XIcon,
-};
+import { SocialLinks } from "@/components/layout/social-links";
+import { site } from "@/content/site";
+import { handleLogoClick } from "@/lib/handle-logo-click";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -30,16 +24,6 @@ const navLinks = [
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
-
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (window.location.pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      if (window.location.hash) {
-        window.history.pushState("", document.title, window.location.pathname);
-      }
-    }
-  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -77,25 +61,11 @@ export function Header() {
             </Link>
           ))}
           <div className="flex items-center gap-3 text-muted-foreground">
-            {socials.map((s) => {
-              const Icon = socialIcons[s.name as keyof typeof socialIcons];
-              return (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.name}
-                  className="transition-colors hover:text-foreground"
-                >
-                  <Icon className="size-5" />
-                </a>
-              );
-            })}
+            <SocialLinks className="transition-colors hover:text-foreground" iconClassName="size-5" />
           </div>
           <Button
             nativeButton={false}
-            className="bg-brand-cta text-brand-cta-foreground hover:bg-brand-cta/90"
+            variant="cta"
             render={<Link href="/support-us">Contribute</Link>}
           />
         </nav>
@@ -104,7 +74,7 @@ export function Header() {
           <Button
             size="sm"
             nativeButton={false}
-            className="bg-brand-cta text-brand-cta-foreground hover:bg-brand-cta/90"
+            variant="cta"
             render={<Link href="/support-us">Contribute</Link>}
           />
           <Sheet>
@@ -141,21 +111,7 @@ export function Header() {
                 ))}
               </nav>
               <div className="mt-auto flex items-center gap-4 border-t px-4 py-4 text-muted-foreground">
-                {socials.map((s) => {
-                  const Icon = socialIcons[s.name as keyof typeof socialIcons];
-                  return (
-                    <a
-                      key={s.name}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={s.name}
-                      className="transition-colors hover:text-foreground"
-                    >
-                      <Icon className="size-5" />
-                    </a>
-                  );
-                })}
+                <SocialLinks className="transition-colors hover:text-foreground" iconClassName="size-5" />
               </div>
             </SheetContent>
           </Sheet>

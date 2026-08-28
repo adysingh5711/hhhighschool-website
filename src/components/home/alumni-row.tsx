@@ -2,13 +2,7 @@ import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
 import { FramedAvatar } from "@/components/home/framed-avatar";
 import { alumniTestimonials } from "@/content/testimonials";
-
-const colorVar: Record<string, string> = {
-  story: "var(--brand-story)",
-  initiatives: "var(--brand-initiatives)",
-  accolades: "var(--brand-accolades)",
-  gallery: "var(--brand-gallery)",
-};
+import { paletteColor } from "@/lib/brand-palette";
 
 export function AlumniRow() {
   return (
@@ -19,11 +13,11 @@ export function AlumniRow() {
         </Reveal>
       </div>
       <Marquee durationSeconds={alumniTestimonials.length * 6}>
-        {alumniTestimonials.map((a) => (
+        {alumniTestimonials.map((a, i) => (
           <div
             key={a.name}
             className="flex h-full w-72 flex-col items-center gap-4 rounded-xl p-6 pt-8 text-center text-white shadow-sm"
-            style={{ backgroundColor: colorVar[a.color] }}
+            style={{ backgroundColor: paletteColor(i) }}
           >
             <FramedAvatar name={a.name} image={a.image} size={88} />
             <p className="text-sm leading-relaxed italic">&ldquo;{a.quote}&rdquo;</p>
