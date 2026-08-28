@@ -66,7 +66,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <JsonLd data={organizationSchema()} />
       </head>
-      <body className="flex min-h-full flex-col bg-background text-foreground">
+      <body
+        className="flex min-h-full flex-col bg-background text-foreground"
+        suppressHydrationWarning
+      >
         <MotionConfigProvider>
           <Header />
           <main className="flex-1">{children}</main>

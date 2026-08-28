@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { Quote } from "lucide-react";
 import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
+import { RetryImage } from "@/components/ui/retry-image";
 import { paletteColor } from "@/lib/brand-palette";
 
 type AlumniTestimonial = {
@@ -34,7 +34,7 @@ export function AlumniRow({ alumniTestimonials }: { alumniTestimonials: AlumniTe
             </div>
             <div className="mt-auto flex flex-col items-center gap-2.5">
               <div className="relative size-40 overflow-hidden rounded-full border-2 border-white bg-white">
-                <Image src={a.image} alt="" fill className="object-cover" sizes="160px" />
+                <RetryImage src={a.image} alt="" fill className="object-cover" sizes="160px" />
               </div>
               <div className="flex flex-col items-center">
                 <p className="font-heading text-xl uppercase">{a.name}</p>

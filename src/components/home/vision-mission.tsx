@@ -9,7 +9,7 @@ export function VisionMission() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-0 overflow-hidden rounded-2xl sm:grid-cols-3">
         <div className="flex flex-col items-center justify-center gap-3 bg-pink-50 p-8 text-center">
           <h2 className="font-heading text-lg text-brand-accolades">Vision</h2>
-          <p className="text-sm text-foreground/80 italic">
+          <p className="text-sm text-foreground/80">
             To build a model of sustainable rural education that inspires transformation beyond
             the classroom.
           </p>
@@ -31,7 +31,7 @@ export function VisionMission() {
         </motion.div>
         <div className="flex flex-col items-center justify-center gap-3 bg-blue-50 p-8 text-center">
           <h2 className="font-heading text-lg text-brand-gallery">Mission</h2>
-          <p className="text-sm text-foreground/80 italic">
+          <p className="text-sm text-foreground/80">
             To bridge the rural-urban education divide by nurturing confident, compassionate, and
             competent individuals through accessible, inclusive, and high-quality
             education—empowering every child, regardless of background, to rise and thrive.

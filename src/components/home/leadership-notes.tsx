@@ -23,7 +23,7 @@ export function LeadershipNotes() {
           />
           <div className="space-y-4 text-left text-sm leading-relaxed text-muted-foreground italic">
             <p>
-              At H. H. High School, our mission is deeply personal. I have always believed that
+              "At H. H. High School, our mission is deeply personal. I have always believed that
               children in rural areas carry the same spark, the same dreams as a city kid. All
               they need is someone to believe in them.
             </p>
@@ -36,7 +36,7 @@ export function LeadershipNotes() {
             </p>
             <p>
               Thank you for being here. If our vision speaks to you, let&apos;s walk this journey
-              together.
+              together."
             </p>
             <p className="text-right font-heading text-xs text-foreground not-italic">
               —Dr. Shahid Shadab Hassan
