@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   title: "Our Story | H. H. High School — From Brambe to a Movement",
   description:
     "Discover how H. H. High School grew from 80 students and six teachers into a celebrated rural education movement. Read the inspiring journey of our school in Brambe.",
-  canonical: "https://hhhighschool.org/our-story",
+  alternates: {
+    canonical: "https://hhhighschool.org/our-story",
+  },
   openGraph: {
     title: "Our Story — H. H. High School Journey",
     description:

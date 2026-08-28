@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   title: "Accolades & Recognition | Awards for H. H. High School",
   description:
     "National recognition including Digital Trailblazer awards, TEDx talks, press coverage, and impact achievements. See how H. H. High School is leading rural education innovation.",
-  canonical: "https://hhhighschool.org/accolades",
+  alternates: {
+    canonical: "https://hhhighschool.org/accolades",
+  },
   openGraph: {
     title: "Accolades & Recognition — H. H. High School",
     description:

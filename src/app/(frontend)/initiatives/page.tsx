@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   title: "Our Initiatives | Student-Centered Programs at H. H. High School",
   description:
     "Explore our impact programs: REACH2teach, LIVE Classroom, VOLUNTEER2teach, Happy Periods, Maatri, Pehel and more. Student-centered initiatives for holistic development.",
-  canonical: "https://hhhighschool.org/initiatives",
+  alternates: {
+    canonical: "https://hhhighschool.org/initiatives",
+  },
   openGraph: {
     title: "Our Initiatives — H. H. High School",
     description:

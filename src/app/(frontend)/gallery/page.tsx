@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   title: "Gallery | Photos from H. H. High School, Brambe",
   description:
     "Photo gallery showcasing student life, celebrations, health camps, community events, and impact moments at H. H. High School in Brambe, Jharkhand.",
-  canonical: "https://hhhighschool.org/gallery",
+  alternates: {
+    canonical: "https://hhhighschool.org/gallery",
+  },
   openGraph: {
     title: "Gallery — H. H. High School",
     description:

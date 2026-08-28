@@ -28,7 +28,9 @@ export const metadata: Metadata = {
   description:
     "Hamid Hassan High School (H. H. High School), Brambe, Jharkhand — outperforming ourselves, each day. A rural school built on child-centered, values-based, affordable education.",
   metadataBase: new URL("https://hhhighschool.org"),
-  canonical: "https://hhhighschool.org",
+  alternates: {
+    canonical: "https://hhhighschool.org",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",

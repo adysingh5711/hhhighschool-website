@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   title: "Support Us | Donate to H. H. High School Education",
   description:
     "Make an impact: Support Education. Restore Hope. Empower Lives. Contribute to infrastructure, scholarships, teacher development, and student programs at H. H. High School.",
-  canonical: "https://hhhighschool.org/support-us",
+  alternates: {
+    canonical: "https://hhhighschool.org/support-us",
+  },
   openGraph: {
     title: "Support Us — H. H. High School",
     description:

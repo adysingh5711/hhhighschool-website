@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   title: "H. H. High School, Brambe | Rural Education in Jharkhand",
   description:
     "Hamid Hassan High School combines child-centered education with strong academics, life skills, and values. Award-winning school serving 1000+ students in Brambe, Jharkhand.",
-  canonical: "https://hhhighschool.org",
+  alternates: {
+    canonical: "https://hhhighschool.org",
+  },
   openGraph: {
     title: "H. H. High School, Brambe",
     description:
