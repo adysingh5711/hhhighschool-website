@@ -41,7 +41,7 @@ export function Foundations() {
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.1} className="relative min-h-[420px] overflow-hidden rounded-2xl">
+          <Reveal delay={0.1} className="relative min-h-105 overflow-hidden rounded-2xl">
             <Image
               src={foundationsBanner}
               alt="Students of H. H. High School"
@@ -62,7 +62,7 @@ export function Foundations() {
         {/* Mobile/tablet: banner above a 2-col card grid */}
         <div className="lg:hidden">
           <Reveal delay={0.05}>
-            <div className="relative mb-10 aspect-[16/7] w-full overflow-hidden rounded-2xl">
+            <div className="relative mb-10 aspect-16/7 w-full overflow-hidden rounded-2xl">
               <Image
                 src={foundationsBanner}
                 alt="Students of H. H. High School"
@@ -104,16 +104,18 @@ export function SdgSection() {
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 33vw, 50vw"
+                  priority={i < 3}
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div
-                  className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:inset-0 group-hover:size-auto group-hover:rounded-xl sm:size-20"
+                  className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:bottom-0 group-hover:left-0 group-hover:size-full group-hover:rounded-xl sm:size-20"
                   style={{ backgroundColor: goal.color }}
                 >
                   <Image
                     src={goal.icon}
                     alt={`SDG ${goal.number}: ${goal.name}`}
                     fill
+                    sizes="80px"
                     className="object-cover transition-opacity duration-200 group-hover:opacity-0"
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">

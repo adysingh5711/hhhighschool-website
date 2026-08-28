@@ -23,6 +23,7 @@ export default function SupportUsPage() {
           src={supportUsIntro.hero.image}
           alt=""
           fill
+          priority
           className="object-cover opacity-70"
           sizes="100vw"
         />

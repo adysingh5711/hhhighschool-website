@@ -1,6 +1,7 @@
+import Image from "next/image";
+import { Quote } from "lucide-react";
 import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
-import { FramedAvatar } from "@/components/home/framed-avatar";
 import { alumniTestimonials } from "@/content/testimonials";
 import { paletteColor } from "@/lib/brand-palette";
 
@@ -12,21 +13,27 @@ export function AlumniRow() {
           <h2 className="mb-10 text-center font-heading text-2xl sm:text-3xl">Alumni Speak</h2>
         </Reveal>
       </div>
-      <Marquee durationSeconds={alumniTestimonials.length * 6}>
+      <Marquee>
         {alumniTestimonials.map((a, i) => (
           <div
             key={a.name}
-            className="flex h-full w-72 flex-col items-center gap-4 rounded-xl p-6 pt-8 text-center text-white shadow-sm"
+            className="flex h-full w-108 shrink-0 flex-col items-center gap-4 overflow-hidden p-4 text-center text-white"
             style={{ backgroundColor: paletteColor(i) }}
           >
-            <FramedAvatar name={a.name} image={a.image} size={88} />
-            <p className="text-sm leading-relaxed italic">&ldquo;{a.quote}&rdquo;</p>
-            <div className="mt-auto flex flex-col items-center gap-1 border-t border-white/20 pt-4">
-              <p className="font-heading text-sm">{a.name}</p>
-              <p className="text-xs text-white/80">
-                {a.year} · {a.qualification}
-              </p>
-              <p className="text-xs font-semibold text-white/90">{a.role}</p>
+            <div className="flex flex-col items-center gap-2 pb-2">
+              <Quote className="size-16 fill-white" strokeWidth={0} aria-hidden />
+              <blockquote className="text-sm leading-relaxed italic">&ldquo;{a.quote}&rdquo;</blockquote>
+            </div>
+            <div className="mt-auto flex flex-col items-center gap-2.5">
+              <div className="relative size-40 overflow-hidden rounded-full border-2 border-white bg-white">
+                <Image src={a.image} alt="" fill className="object-cover" sizes="160px" />
+              </div>
+              <div className="flex flex-col items-center">
+                <p className="font-heading text-xl uppercase">{a.name}</p>
+                <p className="text-xs">{a.year}</p>
+                <p className="text-xs">{a.qualification}</p>
+                <p className="text-xs">{a.role}</p>
+              </div>
             </div>
           </div>
         ))}

@@ -47,7 +47,7 @@ export function GalleryLightbox({
           <DialogTitle className="sr-only">{categoryTitle} photo viewer</DialogTitle>
           {open && (
             <div className="relative">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-black">
+              <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg bg-black">
                 <Image
                   src={images[index]}
                   alt={`${categoryTitle} photo ${index + 1}`}

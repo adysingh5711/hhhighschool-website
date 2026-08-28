@@ -30,7 +30,14 @@ export function SupportDetailTemplate({ program }: { program: SupportProgram }) 
   return (
     <>
       <section className="relative flex min-h-[40vh] items-center justify-center overflow-hidden bg-black">
-        <Image src={supportUsIntro.hero.image} alt="" fill className="object-cover opacity-70" sizes="100vw" />
+        <Image
+          src={supportUsIntro.hero.image}
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-70"
+          sizes="100vw"
+        />
         <div className="relative z-10 mx-auto max-w-2xl rounded-lg bg-white/90 px-8 py-6 text-center">
           <p className="font-heading text-sm text-muted-foreground">{supportUsIntro.hero.heading}</p>
           <h1 className="mt-2 font-heading text-2xl sm:text-3xl">{program.title}</h1>
