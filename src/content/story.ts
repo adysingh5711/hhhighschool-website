@@ -52,14 +52,60 @@ export const foundations = [
   },
 ] as const;
 
-// Real UN SDG goal badges from the live site — a school photo background
-// with the official SDG icon overlaid. Confirmed by opening each icon file;
-// order matches the source DOM.
+
 export const sdgGoals = [
-  { number: 1, name: "No Poverty", bg: "/images/home/sdg/1-no-poverty-bg.jpg", icon: "/images/home/sdg/1-no-poverty-icon.jpg" },
-  { number: 3, name: "Good Health and Well-Being", bg: "/images/home/sdg/3-good-health-bg.jpg", icon: "/images/home/sdg/3-good-health-icon.jpg" },
-  { number: 4, name: "Quality Education", bg: "/images/home/sdg/4-quality-education-bg.jpg", icon: "/images/home/sdg/4-quality-education-icon.jpg" },
-  { number: 5, name: "Gender Equality", bg: "/images/home/sdg/5-gender-equality-bg.jpg", icon: "/images/home/sdg/5-gender-equality-icon.jpg" },
-  { number: 6, name: "Clean Water and Sanitation", bg: "/images/home/sdg/6-clean-water-bg.jpg", icon: "/images/home/sdg/6-clean-water-icon.jpg" },
-  { number: 10, name: "Reduced Inequalities", bg: "/images/home/sdg/10-reduced-inequalities-bg.jpg", icon: "/images/home/sdg/10-reduced-inequalities-icon.jpg" },
+  {
+    number: 1,
+    name: "No Poverty",
+    bg: "/images/home/sdg/1-no-poverty-bg.jpg",
+    icon: "/images/home/sdg/1-no-poverty-icon.jpg",
+    color: "#E5243B",
+    description:
+      "By removing financial barriers to education for the most disadvantaged children, we break the cycle of poverty through long-term empowerment and skill-building.",
+  },
+  {
+    number: 3,
+    name: "Good Health and Well-Being",
+    bg: "/images/home/sdg/3-good-health-bg.jpg",
+    icon: "/images/home/sdg/3-good-health-icon.jpg",
+    color: "#4C9F38",
+    description:
+      "Through health education, hygiene awareness, and community sensitization, we promote healthy habits among students and their families.",
+  },
+  {
+    number: 4,
+    name: "Quality Education",
+    bg: "/images/home/sdg/4-quality-education-bg.jpg",
+    icon: "/images/home/sdg/4-quality-education-icon.jpg",
+    color: "#C5192D",
+    description:
+      "We provide affordable, inclusive, and holistic education to rural children, ensuring access to learning regardless of socio-economic background. Free education is offered to orphans, underprivileged, and single-parent children.",
+  },
+  {
+    number: 5,
+    name: "Gender Equality",
+    bg: "/images/home/sdg/5-gender-equality-bg.jpg",
+    icon: "/images/home/sdg/5-gender-equality-icon.jpg",
+    color: "#FF3A21",
+    description:
+      "We promote equal learning opportunities for both girls and boys, encouraging families to educate their daughters and breaking traditional gender barriers in rural education.",
+  },
+  {
+    number: 6,
+    name: "Clean Water and Sanitation",
+    bg: "/images/home/sdg/6-clean-water-bg.jpg",
+    icon: "/images/home/sdg/6-clean-water-icon.jpg",
+    color: "#26BDE2",
+    description:
+      "We educate students about hygiene and sanitation practices and maintain clean sanitation facilities, contributing to better health and well-being in rural areas.",
+  },
+  {
+    number: 10,
+    name: "Reduced Inequalities",
+    bg: "/images/home/sdg/10-reduced-inequalities-bg.jpg",
+    icon: "/images/home/sdg/10-reduced-inequalities-icon.jpg",
+    color: "#DD1367",
+    description:
+      "We bridge the urban-rural education divide and promote equal opportunities for children from marginalized communities to access quality education and future prospects.",
+  },
 ] as const;

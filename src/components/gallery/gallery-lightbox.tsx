@@ -61,7 +61,7 @@ export function GalleryLightbox({
                   <Button
                     variant="outline"
                     size="icon"
-                    className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full"
+                    className="absolute top-1/2 left-2 -mt-4 rounded-full"
                     onClick={() => go(-1)}
                     aria-label="Previous photo"
                   >
@@ -70,7 +70,7 @@ export function GalleryLightbox({
                   <Button
                     variant="outline"
                     size="icon"
-                    className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full"
+                    className="absolute top-1/2 right-2 -mt-4 rounded-full"
                     onClick={() => go(1)}
                     aria-label="Next photo"
                   >

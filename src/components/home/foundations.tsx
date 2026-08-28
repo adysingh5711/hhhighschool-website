@@ -97,23 +97,30 @@ export function SdgSection() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {sdgGoals.map((goal, i) => (
             <Reveal key={goal.number} delay={i * 0.05}>
-              <div className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <div className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl shadow-sm">
                 <Image
                   src={goal.bg}
                   alt=""
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover"
                   sizes="(min-width: 1024px) 33vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-black/20 transition-colors duration-200 group-hover:bg-black/10" />
-                <div className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-transform duration-200 group-hover:scale-105 sm:size-20">
+                <div className="absolute inset-0 bg-black/20" />
+                <div
+                  className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:inset-0 group-hover:size-auto group-hover:rounded-xl sm:size-20"
+                  style={{ backgroundColor: goal.color }}
+                >
                   <Image
                     src={goal.icon}
                     alt={`SDG ${goal.number}: ${goal.name}`}
                     fill
-                    className="object-cover"
-                    sizes="80px"
+                    className="object-cover transition-opacity duration-200 group-hover:opacity-0"
                   />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="font-heading text-3xl text-white">{goal.number}</span>
+                    <h3 className="font-heading text-sm text-white uppercase tracking-wide">{goal.name}</h3>
+                    <p className="text-xs leading-relaxed text-white/90">{goal.description}</p>
+                  </div>
                 </div>
               </div>
             </Reveal>

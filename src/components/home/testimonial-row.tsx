@@ -1,7 +1,15 @@
+import Image from "next/image";
 import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
-import { FramedAvatar } from "@/components/home/framed-avatar";
+import { paletteColor } from "@/lib/brand-palette";
 import type { Testimonial } from "@/content/testimonials";
+
+function initialsOf(name: string) {
+  const parts = name.replace(/[()&]/g, "").trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
 
 export function TestimonialRow({
   title,
@@ -18,21 +26,41 @@ export function TestimonialRow({
         </Reveal>
       </div>
       <Marquee durationSeconds={testimonials.length * 5}>
-        {testimonials.map((t) => (
+        {testimonials.map((t, i) => (
           <figure
             key={t.name}
-            className="flex h-full w-80 flex-col gap-4 rounded-xl border bg-card p-6 shadow-sm"
+            className="flex h-full w-80 flex-col overflow-hidden rounded-xl border bg-card shadow-sm"
           >
-            <blockquote className="text-sm leading-relaxed text-muted-foreground">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-auto flex items-center gap-3 pt-2">
-              <FramedAvatar name={t.name} image={t.image} />
-              <div>
-                <p className="font-heading text-sm">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
+            <div className="relative h-48 shrink-0">
+              <span
+                className="absolute top-3 left-3 size-20 rounded-full"
+                style={{ backgroundColor: paletteColor(i) }}
+                aria-hidden
+              />
+              <div className="absolute top-8 right-3 bottom-3 left-9 overflow-hidden rounded-lg shadow-sm">
+                {t.image ? (
+                  <Image src={t.image} alt="" fill className="object-cover" sizes="320px" />
+                ) : (
+                  <div
+                    className="flex size-full items-center justify-center font-heading text-2xl text-white"
+                    style={{ backgroundColor: paletteColor(i) }}
+                  >
+                    {initialsOf(t.name)}
+                  </div>
+                )}
               </div>
-            </figcaption>
+            </div>
+            <div className="flex flex-1 flex-col gap-4 bg-surface-muted p-6">
+              <blockquote className="text-sm leading-relaxed text-foreground/80 italic">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption className="mt-auto">
+                <p className="font-heading text-base uppercase" style={{ color: paletteColor(i) }}>
+                  {t.name}
+                </p>
+                <p className="text-xs text-muted-foreground">{t.role}</p>
+              </figcaption>
+            </div>
           </figure>
         ))}
       </Marquee>
