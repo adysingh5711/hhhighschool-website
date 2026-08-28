@@ -10,6 +10,8 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Initiatives } from "./collections/Initiatives";
 import { Accolades } from "./collections/Accolades";
+import { GratitudeTestimonials } from "./collections/GratitudeTestimonials";
+import { AlumniTestimonials } from "./collections/AlumniTestimonials";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -21,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Initiatives, Accolades],
+  collections: [Users, Media, Initiatives, Accolades, GratitudeTestimonials, AlumniTestimonials],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

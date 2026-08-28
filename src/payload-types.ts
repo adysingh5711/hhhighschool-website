@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     initiatives: Initiative;
     accolades: Accolade;
+    'gratitude-testimonials': GratitudeTestimonial;
+    'alumni-testimonials': AlumniTestimonial;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +84,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     initiatives: InitiativesSelect<false> | InitiativesSelect<true>;
     accolades: AccoladesSelect<false> | AccoladesSelect<true>;
+    'gratitude-testimonials': GratitudeTestimonialsSelect<false> | GratitudeTestimonialsSelect<true>;
+    'alumni-testimonials': AlumniTestimonialsSelect<false> | AlumniTestimonialsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -197,6 +201,36 @@ export interface Accolade {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gratitude-testimonials".
+ */
+export interface GratitudeTestimonial {
+  id: number;
+  quote: string;
+  name: string;
+  role: string;
+  image?: (number | null) | Media;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "alumni-testimonials".
+ */
+export interface AlumniTestimonial {
+  id: number;
+  quote: string;
+  name: string;
+  year: string;
+  qualification: string;
+  role: string;
+  image: number | Media;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -234,6 +268,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'accolades';
         value: number | Accolade;
+      } | null)
+    | ({
+        relationTo: 'gratitude-testimonials';
+        value: number | GratitudeTestimonial;
+      } | null)
+    | ({
+        relationTo: 'alumni-testimonials';
+        value: number | AlumniTestimonial;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -341,6 +383,34 @@ export interface AccoladesSelect<T extends boolean = true> {
   description?: T;
   image?: T;
   linkLabel?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gratitude-testimonials_select".
+ */
+export interface GratitudeTestimonialsSelect<T extends boolean = true> {
+  quote?: T;
+  name?: T;
+  role?: T;
+  image?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "alumni-testimonials_select".
+ */
+export interface AlumniTestimonialsSelect<T extends boolean = true> {
+  quote?: T;
+  name?: T;
+  year?: T;
+  qualification?: T;
+  role?: T;
+  image?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
