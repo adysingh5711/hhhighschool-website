@@ -5,7 +5,7 @@ import { InitiativeCard } from "@/components/initiatives/initiative-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { articleSchema } from "@/lib/structured-data";
 import type { Media } from "@/payload-types";
-import { getCMS } from "@/lib/payload";
+import { getCMS, getGalleryCategories } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Our Initiatives | Student-Centered Programs at H. H. High School",
@@ -34,7 +34,10 @@ export const metadata: Metadata = {
 
 export default async function InitiativesPage() {
   const payload = await getCMS();
-  const { docs } = await payload.find({ collection: "initiatives", sort: "order", limit: 0 });
+  const [{ docs }, galleryCategories] = await Promise.all([
+    payload.find({ collection: "initiatives", sort: "order", limit: 0 }),
+    getGalleryCategories(),
+  ]);
 
   const schemaData = articleSchema(
     "Our Initiatives",
@@ -46,12 +49,16 @@ export default async function InitiativesPage() {
     subtitle: doc.subtitle,
     description: doc.description,
     image: (doc.image as Media).url ?? "",
+    alt: doc.alt,
+    images: (doc.images ?? [])
+      .map((entry) => ({ url: (entry.image as Media).url ?? "", alt: entry.alt }))
+      .filter((entry) => entry.url),
   }));
 
   return (
     <>
       <JsonLd data={schemaData} />
-      <SubNavPills />
+      <SubNavPills galleryCategories={galleryCategories} />
       <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <Reveal>
           <h1 className="mb-10 text-center font-heading text-3xl text-brand-initiatives sm:text-4xl">

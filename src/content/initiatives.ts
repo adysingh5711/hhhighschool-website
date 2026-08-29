@@ -4,4 +4,6 @@ export type Initiative = {
   subtitle: string;
   description: string;
   image: string;
+  alt?: string | null;
+  images?: { url: string; alt?: string | null }[];
 };
