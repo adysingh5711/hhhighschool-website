@@ -124,7 +124,7 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div
-                  className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:bottom-0 group-hover:left-0 group-hover:size-full group-hover:rounded-xl sm:size-20 lg:size-24"
+                  className="absolute bottom-3 left-3 size-20 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:bottom-0 group-hover:left-0 group-hover:size-full group-hover:rounded-xl sm:size-30 lg:size-32"
                   style={{ backgroundColor: goal.color }}
                 >
                   <Image
@@ -136,8 +136,8 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span className="font-heading text-3xl text-white">{goal.number}</span>
-                    <h3 className="font-heading text-sm text-white uppercase tracking-wide">{goal.name}</h3>
-                    <p className="text-xs leading-relaxed text-white/90">{goal.description}</p>
+                    <h3 className="font-heading text-base text-white uppercase tracking-wide">{goal.name}</h3>
+                    <p className="text-sm leading-relaxed text-white/90">{goal.description}</p>
                   </div>
                 </div>
               </div>
