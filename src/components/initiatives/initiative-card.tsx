@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -21,7 +21,20 @@ type CardImage = { src: string; alt: string };
 
 function InitiativeImages({ images }: { images: CardImage[] }) {
   const [api, setApi] = useState<CarouselApi>();
+  const [selected, setSelected] = useState(0);
   useCarouselAutoplay(api, AUTOPLAY_INTERVAL_MS);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setSelected(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
   if (images.length <= 1) {
     return (
@@ -40,8 +53,28 @@ function InitiativeImages({ images }: { images: CardImage[] }) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-2 size-7 opacity-0 transition-opacity group-hover/gallery:opacity-100" />
-      <CarouselNext className="right-2 size-7 opacity-0 transition-opacity group-hover/gallery:opacity-100" />
+      <CarouselPrevious
+        variant="ghost"
+        className="left-2 size-8 border-none bg-black/35 text-white hover:bg-black/55 hover:text-white sm:left-2"
+      />
+      <CarouselNext
+        variant="ghost"
+        className="right-2 size-8 border-none bg-black/35 text-white hover:bg-black/55 hover:text-white sm:right-2"
+      />
+      <div className="absolute inset-x-0 bottom-2 flex justify-center gap-1.5">
+        {images.map((img, i) => (
+          <button
+            key={img.src}
+            type="button"
+            aria-label={`Go to photo ${i + 1}`}
+            aria-current={i === selected}
+            onClick={() => api?.scrollTo(i)}
+            className={`size-1.5 rounded-full transition-all ${
+              i === selected ? "w-4 bg-white" : "bg-white/60 hover:bg-white/80"
+            }`}
+          />
+        ))}
+      </div>
     </Carousel>
   );
 }
