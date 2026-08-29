@@ -12,7 +12,7 @@ export function AccoladeCard({ accolade, index }: { accolade: Accolade; index: n
       <div className="relative h-48 w-full sm:h-auto sm:w-56 sm:shrink-0">
         <Image
           src={accolade.image}
-          alt={accolade.title}
+          alt={accolade.alt || accolade.title}
           fill
           className="object-cover"
           sizes="(min-width: 640px) 224px, 100vw"
@@ -23,16 +23,26 @@ export function AccoladeCard({ accolade, index }: { accolade: Accolade; index: n
           {accolade.title}
         </h3>
         <p className="flex-1 text-sm text-muted-foreground">{accolade.description}</p>
-        {/* External media link — the source site doesn't always resolve to a
-            specific stable URL per award, so this signals "more info exists"
-            without claiming a specific destination we don't have. */}
-        <span
-          className="mt-auto inline-flex items-center gap-1 text-xs font-semibold"
-          style={{ color: paletteColor(index) }}
-        >
-          {accolade.linkLabel}
-          <ExternalLink className="size-3" />
-        </span>
+        {accolade.link ? (
+          <a
+            href={accolade.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto inline-flex items-center gap-1 text-xs font-semibold hover:underline"
+            style={{ color: paletteColor(index) }}
+          >
+            {accolade.linkLabel}
+            <ExternalLink className="size-3" />
+          </a>
+        ) : (
+          <span
+            className="mt-auto inline-flex items-center gap-1 text-xs font-semibold"
+            style={{ color: paletteColor(index) }}
+          >
+            {accolade.linkLabel}
+            <ExternalLink className="size-3" />
+          </span>
+        )}
       </div>
     </div>
   );

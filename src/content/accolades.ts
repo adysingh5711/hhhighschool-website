@@ -4,4 +4,6 @@ export type Accolade = {
   description: string;
   image: string;
   linkLabel: "Watch Video" | "View more";
+  link?: string | null;
+  alt?: string | null;
 };

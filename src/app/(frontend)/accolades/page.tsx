@@ -5,7 +5,7 @@ import { AccoladeCard } from "@/components/accolades/accolade-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { articleSchema } from "@/lib/structured-data";
 import type { Media } from "@/payload-types";
-import { getCMS } from "@/lib/payload";
+import { getCMS, getGalleryCategories } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Accolades & Recognition | Awards for H. H. High School",
@@ -34,7 +34,10 @@ export const metadata: Metadata = {
 
 export default async function AccoladesPage() {
   const payload = await getCMS();
-  const { docs } = await payload.find({ collection: "accolades", sort: "order", limit: 0 });
+  const [{ docs }, galleryCategories] = await Promise.all([
+    payload.find({ collection: "accolades", sort: "order", limit: 0 }),
+    getGalleryCategories(),
+  ]);
 
   const schemaData = articleSchema(
     "Accolades & Recognition",
@@ -46,12 +49,14 @@ export default async function AccoladesPage() {
     description: doc.description,
     image: (doc.image as Media).url ?? "",
     linkLabel: doc.linkLabel,
+    link: doc.link,
+    alt: doc.alt,
   }));
 
   return (
     <>
       <JsonLd data={schemaData} />
-      <SubNavPills />
+      <SubNavPills galleryCategories={galleryCategories} />
       <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <Reveal>
           <h1 className="mb-10 text-center font-heading text-3xl text-brand-accolades sm:text-4xl">
