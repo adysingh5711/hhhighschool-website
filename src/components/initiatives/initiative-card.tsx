@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { CmsImage } from "@/components/ui/cms-image";
 import {
   Carousel,
@@ -40,7 +39,7 @@ function InitiativeImages({ images }: { images: CardImage[] }) {
   if (images.length <= 1) {
     return (
       <div className="relative aspect-square w-full">
-        <Image src={images[0].src} alt={images[0].alt} fill className="object-cover" sizes={IMAGE_SIZES} />
+        <CmsImage src={images[0].src} alt={images[0].alt} fill className="object-cover" sizes={IMAGE_SIZES} />
       </div>
     );
   }

@@ -53,7 +53,7 @@ export function CmsImage({
       alt={alt}
       fill={fill}
       className={className}
-      style={{ opacity: status === "loading" ? 0 : 1 }}
+      style={{ opacity: status === "loading" ? 0 : undefined }}
       onLoad={() => setStatus("loaded")}
       onError={() => {
         if (attempt < MAX_AUTO_RETRIES) {
