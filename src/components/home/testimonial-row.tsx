@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/cms-image";
 import { Reveal } from "@/components/layout/reveal";
 import { Marquee } from "@/components/layout/marquee";
 import { paletteColor } from "@/lib/brand-palette";
@@ -44,7 +44,7 @@ export function TestimonialRow({
                 aria-hidden
               />
               {t.image && (
-                <Image src={t.image} alt={t.alt ?? ""} fill className="relative object-cover" sizes="376px" />
+                <CmsImage src={t.image} alt={t.alt ?? ""} fill className="relative object-cover" sizes="376px" />
               )}
             </div>
             <div className="flex w-full flex-1 flex-col justify-between gap-2 p-3">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/cms-image";
 import {
   Carousel,
   CarouselContent,
@@ -33,7 +33,7 @@ export function ScholarshipsCarousel({ scholarshipSlides }: { scholarshipSlides:
             {scholarshipSlides.map((slide) => (
               <CarouselItem key={slide.slug} className="lg:basis-1/2">
                 <div className="overflow-hidden rounded-2xl border-4 border-brand-initiatives/40 shadow-md">
-                  <Image
+                  <CmsImage
                     src={slide.image}
                     alt={slide.alt || slide.title}
                     width={1200}

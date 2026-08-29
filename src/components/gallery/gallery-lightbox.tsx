@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { CmsImage } from "@/components/ui/cms-image";
 import type { GalleryImage } from "@/content/gallery";
 
 export function GalleryLightbox({
@@ -49,7 +50,7 @@ export function GalleryLightbox({
             onClick={() => setIndex(i)}
             className="group relative aspect-square overflow-hidden rounded-lg"
           >
-            <Image
+            <CmsImage
               src={img.url}
               alt={img.alt || `${categoryTitle} photo ${i + 1}`}
               fill
@@ -95,11 +96,12 @@ export function GalleryLightbox({
                   className="scale-110 object-cover opacity-60 blur-2xl"
                   sizes="(min-width: 896px) 896px, 100vw"
                 />
-                <Image
+                <CmsImage
                   key={images[index].url}
                   src={images[index].url}
                   alt={images[index].alt || `${categoryTitle} photo ${index + 1}`}
                   fill
+                  showSkeleton={false}
                   className="relative object-contain"
                   sizes="(min-width: 896px) 896px, 100vw"
                 />

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { CmsImage } from "@/components/ui/cms-image";
 import {
   Carousel,
   CarouselContent,
@@ -49,7 +50,7 @@ function InitiativeImages({ images }: { images: CardImage[] }) {
       <CarouselContent className="ml-0">
         {images.map((img) => (
           <CarouselItem key={img.src} className="relative aspect-square basis-full pl-0">
-            <Image src={img.src} alt={img.alt} fill className="object-cover" sizes={IMAGE_SIZES} />
+            <CmsImage src={img.src} alt={img.alt} fill className="object-cover" sizes={IMAGE_SIZES} />
           </CarouselItem>
         ))}
       </CarouselContent>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/cms-image";
 import { Reveal } from "@/components/layout/reveal";
 import { GalleryLightbox } from "@/components/gallery/gallery-lightbox";
 import type { GalleryCategory } from "@/content/gallery";
@@ -34,7 +34,7 @@ export function GallerySection({
       <Reveal delay={0.05}>
         {isSingleMosaic ? (
           <div className="mx-auto max-w-4xl overflow-hidden rounded-xl">
-            <Image
+            <CmsImage
               src={category.images[0].url}
               alt={category.images[0].alt || `${category.title} press coverage`}
               width={1600}

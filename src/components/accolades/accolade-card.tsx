@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
+import { CmsImage } from "@/components/ui/cms-image";
 import { paletteColor, paletteTint } from "@/lib/brand-palette";
 import type { Accolade } from "@/content/accolades";
 
@@ -10,7 +10,7 @@ export function AccoladeCard({ accolade, index }: { accolade: Accolade; index: n
       style={{ backgroundColor: paletteTint(index) }}
     >
       <div className="relative h-48 w-full sm:h-auto sm:w-56 sm:shrink-0">
-        <Image
+        <CmsImage
           src={accolade.image}
           alt={accolade.alt || accolade.title}
           fill

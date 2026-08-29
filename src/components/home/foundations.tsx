@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CmsImage } from "@/components/ui/cms-image";
 import { Reveal } from "@/components/layout/reveal";
 import { paletteColor } from "@/lib/brand-palette";
 
@@ -55,7 +56,7 @@ export function Foundations({
             ))}
           </div>
           <Reveal delay={0.1} className="relative min-h-105 overflow-hidden rounded-2xl">
-            <Image
+            <CmsImage
               src={foundationsBanner}
               alt={bannerAlt}
               fill
@@ -76,7 +77,7 @@ export function Foundations({
         <div className="lg:hidden">
           <Reveal delay={0.05}>
             <div className="relative mb-10 aspect-16/7 w-full overflow-hidden rounded-2xl">
-              <Image
+              <CmsImage
                 src={foundationsBanner}
                 alt="Students of H. H. High School"
                 fill
@@ -114,7 +115,7 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
           {sdgGoals.map((goal, i) => (
             <Reveal key={goal.number} delay={i * 0.05}>
               <div className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl shadow-sm">
-                <Image
+                <CmsImage
                   src={goal.bg}
                   alt={goal.bgAlt ?? ""}
                   fill
@@ -127,7 +128,7 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
                   className="absolute bottom-3 left-3 size-20 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:bottom-0 group-hover:left-0 group-hover:size-full group-hover:rounded-xl sm:size-30 lg:size-32"
                   style={{ backgroundColor: goal.color }}
                 >
-                  <Image
+                  <CmsImage
                     src={goal.icon}
                     alt={`SDG ${goal.number}: ${goal.name}`}
                     fill
