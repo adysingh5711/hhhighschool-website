@@ -14,11 +14,17 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { SocialLinks } from "@/components/layout/social-links";
-import { site } from "@/content/site";
+import { site, storyClusterNav } from "@/content/site";
 import { handleLogoClick } from "@/lib/handle-logo-click";
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Contact Us", href: "/#contact-us" },
+];
+
+const mobileNavLinks = [
+  { label: "Home", href: "/" },
+  ...storyClusterNav,
   { label: "Contact Us", href: "/#contact-us" },
 ];
 
@@ -45,7 +51,7 @@ export function Header() {
             alt={site.shortName}
             width={238}
             height={64}
-            className="h-10 w-auto"
+            className="h-14 w-auto"
             priority
           />
         </Link>
@@ -87,15 +93,21 @@ export function Header() {
                   <SheetClose
                     nativeButton={false}
                     render={
-                      <Link href="/" onClick={handleLogoClick} className="hover:opacity-80 transition-opacity" />
+                      <Link href="/" onClick={handleLogoClick} className="inline-block hover:opacity-80 transition-opacity" />
                     }
                   >
-                    {site.shortName}
+                    <Image
+                      src="/images/logo.png"
+                      alt={site.shortName}
+                      width={238}
+                      height={64}
+                      className="h-10 w-auto"
+                    />
                   </SheetClose>
                 </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4">
-                {navLinks.map((link) => (
+                {mobileNavLinks.map((link) => (
                   <SheetClose
                     key={link.label}
                     nativeButton={false}
