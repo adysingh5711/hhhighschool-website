@@ -5,7 +5,7 @@ import { StoryPortrait } from "@/components/our-story/story-portrait";
 import { JsonLd } from "@/components/seo/json-ld";
 import { articleSchema } from "@/lib/structured-data";
 import type { Media } from "@/payload-types";
-import { getCMS } from "@/lib/payload";
+import { getCMS, getGalleryCategories } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Our Story | H. H. High School — From Brambe to a Movement",
@@ -34,7 +34,10 @@ export const metadata: Metadata = {
 
 export default async function OurStoryPage() {
   const payload = await getCMS();
-  const story = await payload.findGlobal({ slug: "our-story" });
+  const [story, galleryCategories] = await Promise.all([
+    payload.findGlobal({ slug: "our-story" }),
+    getGalleryCategories(),
+  ]);
   const storyParagraphs = story.storyParagraphs.map((p) => p.paragraph);
   const storyPortraits = story.storyPortraits.map((p) => ({
     name: p.name,
@@ -44,7 +47,7 @@ export default async function OurStoryPage() {
   return (
     <>
       <JsonLd data={articleSchema("Our Story", "How H. H. High School grew from 80 students and six teachers into a celebrated rural education movement.")} />
-      <SubNavPills />
+      <SubNavPills galleryCategories={galleryCategories} />
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-12 sm:py-16 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Reveal>

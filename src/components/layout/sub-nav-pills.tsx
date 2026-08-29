@@ -4,11 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpenText, Lightbulb, Award, Images, type LucideIcon } from "lucide-react";
 import { storyClusterNav } from "@/content/site";
-import { galleryCategories } from "@/content/gallery";
 
 const icons: LucideIcon[] = [BookOpenText, Lightbulb, Award, Images];
 
-export function SubNavPills({ variant = "compact" }: { variant?: "compact" | "hero" }) {
+export function SubNavPills({
+  variant = "compact",
+  galleryCategories = [],
+}: {
+  variant?: "compact" | "hero";
+  galleryCategories?: { slug: string; title: string }[];
+}) {
   const pathname = usePathname();
   const hero = variant === "hero";
 

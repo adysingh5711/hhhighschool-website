@@ -13,6 +13,8 @@ import { Accolades } from "./collections/Accolades";
 import { GratitudeTestimonials } from "./collections/GratitudeTestimonials";
 import { AlumniTestimonials } from "./collections/AlumniTestimonials";
 import { GalleryImages } from "./collections/GalleryImages";
+import { GalleryCategories } from "./collections/GalleryCategories";
+import { Scholarships } from "./collections/Scholarships";
 import { OurStory } from "./globals/OurStory";
 
 const filename = fileURLToPath(import.meta.url);
@@ -33,6 +35,8 @@ export default buildConfig({
     GratitudeTestimonials,
     AlumniTestimonials,
     GalleryImages,
+    GalleryCategories,
+    Scholarships,
   ],
   globals: [OurStory],
   editor: lexicalEditor(),

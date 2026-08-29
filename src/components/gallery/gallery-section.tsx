@@ -35,8 +35,8 @@ export function GallerySection({
         {isSingleMosaic ? (
           <div className="mx-auto max-w-4xl overflow-hidden rounded-xl">
             <Image
-              src={category.images[0]}
-              alt={`${category.title} press coverage`}
+              src={category.images[0].url}
+              alt={category.images[0].alt || `${category.title} press coverage`}
               width={1600}
               height={1200}
               className="h-auto w-full"
