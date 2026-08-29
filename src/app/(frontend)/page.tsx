@@ -10,7 +10,7 @@ import { ScholarshipsCarousel } from "@/components/home/scholarships-carousel";
 import { AlumniRow } from "@/components/home/alumni-row";
 import { ContactCards } from "@/components/home/contact-cards";
 import type { Media } from "@/payload-types";
-import { getCMS } from "@/lib/payload";
+import { getCMS, getGalleryCategories } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "H. H. High School, Brambe | Rural Education in Jharkhand",
@@ -39,17 +39,28 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const payload = await getCMS();
-  const [{ docs: gratitudeDocs }, story, { docs: alumniDocs }] = await Promise.all([
-    payload.find({ collection: "gratitude-testimonials", sort: "order", limit: 0 }),
-    payload.findGlobal({ slug: "our-story" }),
-    payload.find({ collection: "alumni-testimonials", sort: "order", limit: 0 }),
-  ]);
+  const [{ docs: gratitudeDocs }, story, { docs: alumniDocs }, { docs: scholarshipDocs }, galleryCategories] =
+    await Promise.all([
+      payload.find({ collection: "gratitude-testimonials", sort: "order", limit: 0 }),
+      payload.findGlobal({ slug: "our-story" }),
+      payload.find({ collection: "alumni-testimonials", sort: "order", limit: 0 }),
+      payload.find({ collection: "scholarships", sort: "order", limit: 0 }),
+      getGalleryCategories(),
+    ]);
+
+  const scholarshipSlides = scholarshipDocs.map((doc) => ({
+    slug: doc.slug,
+    title: doc.title,
+    image: (doc.image as Media).url ?? "",
+    alt: doc.alt,
+  }));
 
   const gratitudeTestimonials = gratitudeDocs.map((doc) => ({
     quote: doc.quote,
     name: doc.name,
     role: doc.role,
     image: doc.image ? (doc.image as Media).url ?? undefined : undefined,
+    alt: doc.alt,
   }));
 
   const alumniTestimonials = alumniDocs.map((doc) => ({
@@ -59,14 +70,17 @@ export default async function Home() {
     qualification: doc.qualification,
     role: doc.role,
     image: (doc.image as Media).url ?? "",
+    alt: doc.alt,
   }));
 
   const foundations = story.foundations.map((f) => ({ title: f.title, description: f.description }));
   const foundationsBanner = (story.foundationsBanner as Media).url ?? "";
+  const foundationsBannerAlt = story.foundationsBannerAlt;
   const sdgGoals = story.sdgGoals.map((g) => ({
     number: g.number,
     name: g.name,
     bg: (g.bg as Media).url ?? "",
+    bgAlt: g.bgAlt,
     icon: (g.icon as Media).url ?? "",
     color: g.color,
     description: g.description,
@@ -75,14 +89,18 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <SubNavPills variant="hero" />
+      <SubNavPills variant="hero" galleryCategories={galleryCategories} />
       <LeadershipNotes />
-      <Foundations foundations={foundations} foundationsBanner={foundationsBanner} />
+      <Foundations
+        foundations={foundations}
+        foundationsBanner={foundationsBanner}
+        foundationsBannerAlt={foundationsBannerAlt}
+      />
       <SdgSection sdgGoals={sdgGoals} />
       <VisionMission />
       <TestimonialRow title="Gratitude & Impressions" testimonials={gratitudeTestimonials} />
       <CelebrateEffortsVideo />
-      <ScholarshipsCarousel />
+      <ScholarshipsCarousel scholarshipSlides={scholarshipSlides} />
       <AlumniRow alumniTestimonials={alumniTestimonials} />
       <ContactCards />
     </>

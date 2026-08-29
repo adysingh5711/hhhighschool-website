@@ -74,6 +74,8 @@ export interface Config {
     'gratitude-testimonials': GratitudeTestimonial;
     'alumni-testimonials': AlumniTestimonial;
     'gallery-images': GalleryImage;
+    'gallery-categories': GalleryCategory;
+    scholarships: Scholarship;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +90,8 @@ export interface Config {
     'gratitude-testimonials': GratitudeTestimonialsSelect<false> | GratitudeTestimonialsSelect<true>;
     'alumni-testimonials': AlumniTestimonialsSelect<false> | AlumniTestimonialsSelect<true>;
     'gallery-images': GalleryImagesSelect<false> | GalleryImagesSelect<true>;
+    'gallery-categories': GalleryCategoriesSelect<false> | GalleryCategoriesSelect<true>;
+    scholarships: ScholarshipsSelect<false> | ScholarshipsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -186,6 +190,20 @@ export interface Initiative {
   subtitle: string;
   description: string;
   image: number | Media;
+  /**
+   * Optional. Falls back to the title if left blank.
+   */
+  alt?: string | null;
+  /**
+   * Optional extra photos. When present, the card cycles through image + these.
+   */
+  images?:
+    | {
+        image: number | Media;
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   order: number;
   updatedAt: string;
   createdAt: string;
@@ -200,7 +218,12 @@ export interface Accolade {
   slug: string;
   description: string;
   image: number | Media;
+  /**
+   * Optional. Falls back to the title if left blank.
+   */
+  alt?: string | null;
   linkLabel: 'Watch Video' | 'View more';
+  link?: string | null;
   order: number;
   updatedAt: string;
   createdAt: string;
@@ -215,6 +238,7 @@ export interface GratitudeTestimonial {
   name: string;
   role: string;
   image?: (number | null) | Media;
+  alt?: string | null;
   order: number;
   updatedAt: string;
   createdAt: string;
@@ -231,6 +255,7 @@ export interface AlumniTestimonial {
   qualification: string;
   role: string;
   image: number | Media;
+  alt?: string | null;
   order: number;
   updatedAt: string;
   createdAt: string;
@@ -242,14 +267,38 @@ export interface AlumniTestimonial {
 export interface GalleryImage {
   id: number;
   image: number | Media;
-  category:
-    | 'in-the-media'
-    | 'health-wellbeing'
-    | 'visit-guest-interactions'
-    | 'events-celebrations'
-    | 'student-creativity'
-    | 'community-engagement'
-    | 'powered-by-people';
+  alt?: string | null;
+  category: number | GalleryCategory;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-categories".
+ */
+export interface GalleryCategory {
+  id: number;
+  title: string;
+  slug: string;
+  color: 'story' | 'initiatives' | 'accolades' | 'gallery' | 'sky' | 'cta';
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scholarships".
+ */
+export interface Scholarship {
+  id: number;
+  title: string;
+  slug: string;
+  /**
+   * Optional. Falls back to the title if left blank.
+   */
+  alt?: string | null;
+  image: number | Media;
+  order: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -304,6 +353,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery-images';
         value: number | GalleryImage;
+      } | null)
+    | ({
+        relationTo: 'gallery-categories';
+        value: number | GalleryCategory;
+      } | null)
+    | ({
+        relationTo: 'scholarships';
+        value: number | Scholarship;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -397,6 +454,14 @@ export interface InitiativesSelect<T extends boolean = true> {
   subtitle?: T;
   description?: T;
   image?: T;
+  alt?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -410,7 +475,9 @@ export interface AccoladesSelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   image?: T;
+  alt?: T;
   linkLabel?: T;
+  link?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -424,6 +491,7 @@ export interface GratitudeTestimonialsSelect<T extends boolean = true> {
   name?: T;
   role?: T;
   image?: T;
+  alt?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -439,6 +507,7 @@ export interface AlumniTestimonialsSelect<T extends boolean = true> {
   qualification?: T;
   role?: T;
   image?: T;
+  alt?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -449,7 +518,33 @@ export interface AlumniTestimonialsSelect<T extends boolean = true> {
  */
 export interface GalleryImagesSelect<T extends boolean = true> {
   image?: T;
+  alt?: T;
   category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-categories_select".
+ */
+export interface GalleryCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  color?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scholarships_select".
+ */
+export interface ScholarshipsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  alt?: T;
+  image?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -509,6 +604,7 @@ export interface OurStory {
     id?: string | null;
   }[];
   foundationsBanner: number | Media;
+  foundationsBannerAlt?: string | null;
   foundations: {
     title: string;
     description: string;
@@ -518,6 +614,7 @@ export interface OurStory {
     number: number;
     name: string;
     bg: number | Media;
+    bgAlt?: string | null;
     icon: number | Media;
     color: string;
     description: string;
@@ -545,6 +642,7 @@ export interface OurStorySelect<T extends boolean = true> {
         id?: T;
       };
   foundationsBanner?: T;
+  foundationsBannerAlt?: T;
   foundations?:
     | T
     | {
@@ -558,6 +656,7 @@ export interface OurStorySelect<T extends boolean = true> {
         number?: T;
         name?: T;
         bg?: T;
+        bgAlt?: T;
         icon?: T;
         color?: T;
         description?: T;

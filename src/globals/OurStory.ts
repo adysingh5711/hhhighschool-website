@@ -19,6 +19,7 @@ export const OurStory: GlobalConfig = {
       ],
     },
     { name: "foundationsBanner", type: "upload", relationTo: "media", required: true },
+    { name: "foundationsBannerAlt", type: "text" },
     {
       name: "foundations",
       type: "array",
@@ -36,6 +37,7 @@ export const OurStory: GlobalConfig = {
         { name: "number", type: "number", required: true },
         { name: "name", type: "text", required: true },
         { name: "bg", type: "upload", relationTo: "media", required: true },
+        { name: "bgAlt", type: "text" },
         { name: "icon", type: "upload", relationTo: "media", required: true },
         { name: "color", type: "text", required: true },
         { name: "description", type: "textarea", required: true },

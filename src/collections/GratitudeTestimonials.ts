@@ -12,6 +12,7 @@ export const GratitudeTestimonials: CollectionConfig = {
     { name: "name", type: "text", required: true },
     { name: "role", type: "text", required: true },
     { name: "image", type: "upload", relationTo: "media" },
+    { name: "alt", type: "text" },
     { name: "order", type: "number", required: true, admin: { position: "sidebar" } },
   ],
 };

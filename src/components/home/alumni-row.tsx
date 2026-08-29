@@ -11,6 +11,7 @@ type AlumniTestimonial = {
   qualification: string;
   role: string;
   image: string;
+  alt?: string | null;
 };
 
 export function AlumniRow({ alumniTestimonials }: { alumniTestimonials: AlumniTestimonial[] }) {
@@ -18,14 +19,14 @@ export function AlumniRow({ alumniTestimonials }: { alumniTestimonials: AlumniTe
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <h2 className="mb-10 text-center font-heading text-2xl sm:text-3xl">Alumni Speak</h2>
+          <h2 className="mb-10 text-center font-heading text-2xl text-brand-gallery sm:text-3xl">Alumni Speak</h2>
         </Reveal>
       </div>
       <Marquee>
         {alumniTestimonials.map((a, i) => (
           <div
             key={a.name}
-            className="flex h-full w-108 shrink-0 flex-col items-center gap-4 overflow-hidden p-4 text-center text-white"
+            className="flex h-full w-80 shrink-0 flex-col items-center gap-4 overflow-hidden p-4 text-center text-white"
             style={{ backgroundColor: paletteColor(i) }}
           >
             <div className="flex flex-col items-center gap-2 pb-2">
@@ -34,7 +35,7 @@ export function AlumniRow({ alumniTestimonials }: { alumniTestimonials: AlumniTe
             </div>
             <div className="mt-auto flex flex-col items-center gap-2.5">
               <div className="relative size-40 overflow-hidden rounded-full border-2 border-white bg-white">
-                <RetryImage src={a.image} alt="" fill className="object-cover" sizes="160px" />
+                <RetryImage src={a.image} alt={a.alt ?? ""} fill className="object-cover" sizes="160px" />
               </div>
               <div className="flex flex-col items-center">
                 <p className="font-heading text-xl uppercase">{a.name}</p>

@@ -14,6 +14,7 @@ export const AlumniTestimonials: CollectionConfig = {
     { name: "qualification", type: "text", required: true },
     { name: "role", type: "text", required: true },
     { name: "image", type: "upload", relationTo: "media", required: true },
+    { name: "alt", type: "text" },
     { name: "order", type: "number", required: true, admin: { position: "sidebar" } },
   ],
 };

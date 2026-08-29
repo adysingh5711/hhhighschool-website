@@ -22,14 +22,14 @@ export function TestimonialRow({
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <h2 className="mb-10 text-center font-heading text-2xl sm:text-3xl">{title}</h2>
+          <h2 className="mb-10 text-center font-heading text-2xl text-brand-gallery sm:text-3xl">{title}</h2>
         </Reveal>
       </div>
       <Marquee>
         {testimonials.map((t, i) => (
           <figure
             key={t.name}
-            className="flex h-full w-94 shrink-0 flex-col items-center border-2 border-white bg-surface-muted"
+            className="flex h-full w-80 shrink-0 flex-col items-center border-2 border-white bg-surface-muted"
           >
             <div className="relative w-full shrink-0 overflow-hidden bg-white" style={{ height: PHOTO_HEIGHT }}>
               <span
@@ -44,7 +44,7 @@ export function TestimonialRow({
                 aria-hidden
               />
               {t.image && (
-                <Image src={t.image} alt="" fill className="relative object-cover" sizes="376px" />
+                <Image src={t.image} alt={t.alt ?? ""} fill className="relative object-cover" sizes="376px" />
               )}
             </div>
             <div className="flex w-full flex-1 flex-col justify-between gap-2 p-3">

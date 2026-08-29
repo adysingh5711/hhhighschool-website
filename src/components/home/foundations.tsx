@@ -7,6 +7,7 @@ type SdgGoal = {
   number: number;
   name: string;
   bg: string;
+  bgAlt?: string | null;
   icon: string;
   color: string;
   description: string;
@@ -18,7 +19,7 @@ function FoundationCard({ f, index }: { f: FoundationItem; index: number }) {
       <h3 className="font-heading text-lg" style={{ color: paletteColor(index) }}>
         {f.title}
       </h3>
-      <p className="text-sm text-foreground/80 italic">{f.description}</p>
+      <p className="text-sm text-foreground/80">{f.description}</p>
     </div>
   );
 }
@@ -26,10 +27,13 @@ function FoundationCard({ f, index }: { f: FoundationItem; index: number }) {
 export function Foundations({
   foundations,
   foundationsBanner,
+  foundationsBannerAlt,
 }: {
   foundations: FoundationItem[];
   foundationsBanner: string;
+  foundationsBannerAlt?: string | null;
 }) {
+  const bannerAlt = foundationsBannerAlt || "Students of H. H. High School";
   const [left, right] = [foundations.slice(0, 3), foundations.slice(3, 6)];
 
   return (
@@ -53,7 +57,7 @@ export function Foundations({
           <Reveal delay={0.1} className="relative min-h-105 overflow-hidden rounded-2xl">
             <Image
               src={foundationsBanner}
-              alt="Students of H. H. High School"
+              alt={bannerAlt}
               fill
               className="object-cover"
               sizes="33vw"
@@ -99,9 +103,12 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
     <section className="px-6 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <h2 className="mb-10 text-center font-heading text-2xl text-brand-gallery sm:text-3xl">
-            The SDGs We Directly Contribute To
-          </h2>
+          <div className="mb-10 flex flex-col items-center justify-center gap-4">
+            <Image src="/images/home/sdg.svg" alt="Sustainable Development Goals" width={160} height={40} className="h-16 w-auto" />
+            <h2 className="text-center font-heading text-2xl sm:text-3xl" style={{ color: "#039CDE" }}>
+              The SDGs We Directly Contribute To
+            </h2>
+          </div>
         </Reveal>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {sdgGoals.map((goal, i) => (
@@ -109,7 +116,7 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
               <div className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl shadow-sm">
                 <Image
                   src={goal.bg}
-                  alt=""
+                  alt={goal.bgAlt ?? ""}
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 33vw, 50vw"
@@ -117,7 +124,7 @@ export function SdgSection({ sdgGoals }: { sdgGoals: SdgGoal[] }) {
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div
-                  className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:bottom-0 group-hover:left-0 group-hover:size-full group-hover:rounded-xl sm:size-20"
+                  className="absolute bottom-3 left-3 size-16 overflow-hidden rounded-md shadow-md transition-all duration-300 ease-out group-hover:bottom-0 group-hover:left-0 group-hover:size-full group-hover:rounded-xl sm:size-20 lg:size-24"
                   style={{ backgroundColor: goal.color }}
                 >
                   <Image
