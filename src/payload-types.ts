@@ -281,7 +281,10 @@ export interface GalleryCategory {
   title: string;
   slug: string;
   color: 'story' | 'initiatives' | 'accolades' | 'gallery' | 'sky' | 'cta';
-  order: number;
+  /**
+   * Auto-assigned on create; edit to reorder manually.
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
