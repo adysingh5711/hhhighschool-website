@@ -8,7 +8,7 @@ export function VisionMission() {
     <section className="bg-brand-accolades/90 px-6 py-16 sm:py-24">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-0 overflow-hidden rounded-2xl sm:grid-cols-3">
         <div className="flex flex-col items-center justify-center gap-3 bg-pink-50 p-8 text-center">
-          <h2 className="font-heading text-lg text-brand-accolades">Vision</h2>
+          <h2 className="font-heading text-base text-brand-accolades">Vision</h2>
           <p className="text-sm text-foreground/80">
             To build a model of sustainable rural education that inspires transformation beyond
             the classroom.

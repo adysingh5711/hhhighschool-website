@@ -177,7 +177,7 @@ export const supportPrograms: SupportProgram[] = [
 
 export const supportUsIntro = {
   hero: {
-    heading: "Support Education. Restore Hope. Empower Lives.",
+    heading: "Support Education. Restore Hope. Empower Lives.",
     subheading: "When you support H. H. High School, you help every child learn with dignity and dream without limits.",
     image: "/images/support/hero-banner.png",
   },

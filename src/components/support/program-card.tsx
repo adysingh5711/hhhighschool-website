@@ -21,7 +21,7 @@ export function ProgramCard({ program }: { program: SupportProgram }) {
           <h3 className="font-heading text-xl">{program.title}</h3>
           <p className="text-xs text-white/80">({program.parenthetical})</p>
         </div>
-        <p className="text-sm text-white/90 italic">{program.teaser}</p>
+        <p className="text-sm text-white/90">{program.teaser}</p>
         <Link
           href={`/support/${program.slug}`}
           className="text-sm font-semibold underline underline-offset-4 hover:text-white/80"
