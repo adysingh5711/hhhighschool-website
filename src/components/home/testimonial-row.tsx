@@ -37,8 +37,8 @@ export function TestimonialRow({
                 style={{
                   width: CIRCLE_SIZE,
                   height: CIRCLE_SIZE,
-                  left: (PHOTO_WIDTH - CIRCLE_SIZE) * 0.6,
-                  top: (PHOTO_HEIGHT - CIRCLE_SIZE) / 2,
+                  left: (PHOTO_WIDTH - CIRCLE_SIZE) * 0.25,
+                  top: (PHOTO_HEIGHT - CIRCLE_SIZE) / 3,
                   backgroundColor: paletteColor(i),
                 }}
                 aria-hidden
