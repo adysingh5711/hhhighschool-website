@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import type { GalleryImage } from "@/content/gallery";
 
@@ -62,43 +62,82 @@ export function GalleryLightbox({
       </div>
 
       <Dialog open={open} onOpenChange={(v) => !v && setIndex(null)}>
-        <DialogContent className="max-w-4xl border-none bg-transparent p-0 shadow-none sm:max-w-4xl">
+        <DialogContent
+          showCloseButton={false}
+          className="max-w-4xl border-none bg-transparent p-0 shadow-none sm:max-w-4xl"
+        >
           <DialogTitle className="sr-only">{categoryTitle} photo viewer</DialogTitle>
           {open && (
             <div className="relative">
+              <DialogClose
+                render={
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute top-2 right-2 z-10 rounded-full border-none bg-black/35 text-white hover:bg-black/55 hover:text-white"
+                    aria-label="Close"
+                  />
+                }
+              >
+                <X />
+              </DialogClose>
               <div
                 className="relative aspect-4/3 w-full touch-pan-y overflow-hidden rounded-lg bg-black"
                 onTouchStart={onTouchStart}
                 onTouchEnd={onTouchEnd}
               >
                 <Image
+                  key={`${images[index].url}-bg`}
+                  src={images[index].url}
+                  alt=""
+                  aria-hidden
+                  fill
+                  className="scale-110 object-cover opacity-60 blur-2xl"
+                  sizes="(min-width: 896px) 896px, 100vw"
+                />
+                <Image
+                  key={images[index].url}
                   src={images[index].url}
                   alt={images[index].alt || `${categoryTitle} photo ${index + 1}`}
                   fill
-                  className="object-contain"
+                  className="relative object-contain"
                   sizes="(min-width: 896px) 896px, 100vw"
                 />
               </div>
               {images.length > 1 && (
                 <>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
-                    className="absolute top-1/2 left-2 -mt-4 rounded-full"
+                    className="absolute top-1/2 left-2 -mt-4 rounded-full border-none bg-black/35 text-white hover:bg-black/55 hover:text-white"
                     onClick={() => go(-1)}
                     aria-label="Previous photo"
                   >
                     <ChevronLeft />
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
-                    className="absolute top-1/2 right-2 -mt-4 rounded-full"
+                    className="absolute top-1/2 right-2 -mt-4 rounded-full border-none bg-black/35 text-white hover:bg-black/55 hover:text-white"
                     onClick={() => go(1)}
                     aria-label="Next photo"
                   >
                     <ChevronRight />
                   </Button>
+                  <div className="absolute inset-x-0 bottom-2 flex justify-center gap-1.5">
+                    {images.map((img, i) => (
+                      <button
+                        key={img.url}
+                        type="button"
+                        aria-label={`Go to photo ${i + 1}`}
+                        aria-current={i === index}
+                        onClick={() => setIndex(i)}
+                        className={`size-1.5 rounded-full transition-all ${
+                          i === index ? "w-4 bg-white" : "bg-white/60 hover:bg-white/80"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </>
               )}
             </div>
