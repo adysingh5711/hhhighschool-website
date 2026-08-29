@@ -48,8 +48,8 @@ function InitiativeImages({ images }: { images: CardImage[] }) {
   return (
     <Carousel opts={{ loop: true }} setApi={setApi} className="group/gallery">
       <CarouselContent className="ml-0">
-        {images.map((img) => (
-          <CarouselItem key={img.src} className="relative aspect-square basis-full pl-0">
+        {images.map((img, i) => (
+          <CarouselItem key={i} className="relative aspect-square basis-full pl-0">
             <CmsImage src={img.src} alt={img.alt} fill className="object-cover" sizes={IMAGE_SIZES} />
           </CarouselItem>
         ))}
@@ -65,7 +65,7 @@ function InitiativeImages({ images }: { images: CardImage[] }) {
       <div className="absolute inset-x-0 bottom-2 flex justify-center gap-1.5">
         {images.map((img, i) => (
           <button
-            key={img.src}
+            key={i}
             type="button"
             aria-label={`Go to photo ${i + 1}`}
             aria-current={i === selected}
